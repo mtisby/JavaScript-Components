@@ -4,6 +4,7 @@ const months = {
     Sep: 30, Oct: 31, Nov: 30, Dec: 31
 };
 const daysOfWeek = [[1, "Sun"], [2, "Mon"], [3, "Tue"],  [4, "Wed"],  [5, "Thu"],  [6, "Fri"],  [7, "Sat"] ]
+const daysOfWeekDict = { Sun: 1, Mon: 2, Tue: 3, Wed: 4, Thu: 5, Fri: 6, Sat: 7};
 const today = Date();
 const start = 1;
 
@@ -14,8 +15,18 @@ if (parseInt(today.slice(12, 16), 10) % 4 === 0) {
 
 // functions 
 function startDate(currentDate) {
+    const dayInd = daysOfWeekDict[today.slice(0, 3)];
+    const dateNum = parseInt(today.slice(8, 10));
 
- }
+    const remainingDays = dateNum - dayInd;
+    if (remainingDays > 7) {
+        return ((7 - (remainingDays % 7)) + 1);
+        // returns starting index
+    } else {
+        return (7 - (dateNum - (dayInd))) + 1;
+        // returns starting index
+    }
+}
 
 // select js objects
 const calendarsContainer = document.querySelector('#calendarContainer');
