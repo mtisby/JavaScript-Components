@@ -16,31 +16,60 @@ if (parseInt(today.slice(12, 16), 10) % 4 === 0) {
 const calendarsContainer = document.querySelector('#calendarContainer');
 
 // make calendar js objects
+for (var x = 0; x < 3; x++){
+    //make table
+    const calendarTable = document.createElement('table');
 
-//make table
-const calendarTable = document.createElement('table');
+    // make table body
+    const tableBody = document.createElement('tbody');
 
-// make table body
-const tableBody = document.createElement('tbody');
+    // make table rows and columns
+    for (var i = 0; i < 6; i++) {
+        const calendarRow = document.createElement('tr');
+        if (i === 0) {
+            for (var j = 0; j < 7; j++) {
+                
+                const calendarCol = document.createElement('td');
+                const cellText = document.createTextNode(daysOfWeek[j]);
+                calendarCol.appendChild(cellText);
+                calendarRow.appendChild(calendarCol);
+            }
+        } else {
+            for (var j = 0; j < 7; j++) {
+                const calendarCol = document.createElement('td');
+                const cellText = document.createTextNode("heyyyy");
 
-// make table rows and columns
-for (var i = 0; i < 6; i++) {
-    const calendarRow = document.createElement('tr');
-    
-    for (var i = 0; i < 7; i++) {
-        const calendarCol = document.createElement('td');
-        
-        calendarRow.appendChild(calendarCol);
-
-        
-        const cellText = document.createTextNode("heyyyy");
-        calendarCol.appendChild(cellText);
+                
+                calendarCol.appendChild(cellText);
+                calendarRow.appendChild(calendarCol);
+            }
+        }
+        tableBody.appendChild(calendarRow)
     }
-    tableBody.appendChild(calendarRow)
-}
 
-calendarTable.appendChild(tableBody);
-calendarsContainer.appendChild(calendarTable);
+    calendarTable.appendChild(tableBody);
+    calendarsContainer.appendChild(calendarTable);
+};
+
+
+// // make table rows and columns
+// for (var i = 0; i < 6; i++) {
+//     const calendarRow = document.createElement('tr');
+    
+//     for (var j = 0; j < 7; j++) {
+//         console.logo
+//         const calendarCol = document.createElement('td');
+//         const cellText = document.createTextNode("heyyyy");
+
+        
+//         calendarCol.appendChild(cellText);
+//         calendarRow.appendChild(calendarCol);
+//     }
+//     tableBody.appendChild(calendarRow)
+// }
+
+// calendarTable.appendChild(tableBody);
+// calendarsContainer.appendChild(calendarTable);
 
 
 
