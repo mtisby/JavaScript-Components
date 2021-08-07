@@ -3,14 +3,19 @@ const months = {
      Jan: 31, Feb: 28, Mar: 31, April: 30, May: 31, Jun: 30, Jul: 31, Aug: 31,
     Sep: 30, Oct: 31, Nov: 30, Dec: 31
 };
-const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+const daysOfWeek = [[1, "Sun"], [2, "Mon"], [3, "Tue"],  [4, "Wed"],  [5, "Thu"],  [6, "Fri"],  [7, "Sat"] ]
 const today = Date();
 const start = 1;
 
 // check if leap it is a Leap Year
 if (parseInt(today.slice(12, 16), 10) % 4 === 0) {
-    months["februray"] = 29;
+    months[Feb] = 29;
 }
+
+// functions 
+function startDate(currentDate) {
+
+ }
 
 // select js objects
 const calendarsContainer = document.querySelector('#calendarContainer');
@@ -30,7 +35,7 @@ for (var x = 0; x < 3; x++){
             for (var j = 0; j < 7; j++) {
                 
                 const calendarCol = document.createElement('td');
-                const cellText = document.createTextNode(daysOfWeek[j]);
+                const cellText = document.createTextNode(daysOfWeek[j][1]);
                 calendarCol.appendChild(cellText);
                 calendarRow.appendChild(calendarCol);
             }
