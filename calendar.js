@@ -20,10 +20,14 @@ function startDate(currentDate) {
 
     if (dateNum > 7) {
         const remainder = dateNum % dayInd;
+        return 7 - remainder + 1; 
         // returns starting index
-    } else if (remainingDays > 1){ 
-        return (7 - (dateNum - (dayInd))) + 1;
-        // returns starting index
+    } else {
+        if (dayInd / dateNum === 0) {
+            return dayInd;
+        } else {
+            return Math.abs(dayInd - dateNum) + 1
+        }
     }
 }
 
