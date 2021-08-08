@@ -18,9 +18,8 @@ function startDate(currentDate) {
     const dayInd = daysOfWeekDict[today.slice(0, 3)];
     const dateNum = parseInt(today.slice(8, 10));
 
-    const remainingDays = dateNum - dayInd;
-    if (remainingDays > 7) {
-        return ((7 - (remainingDays % 7)) + 1);
+    if (dateNum > 7) {
+        const remainder = dateNum % dayInd;
         // returns starting index
     } else if (remainingDays > 1){ 
         return (7 - (dateNum - (dayInd))) + 1;
