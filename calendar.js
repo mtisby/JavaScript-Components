@@ -22,7 +22,7 @@ function startDate(currentDate) {
     if (remainingDays > 7) {
         return ((7 - (remainingDays % 7)) + 1);
         // returns starting index
-    } else {
+    } else if (remainingDays > 1){ 
         return (7 - (dateNum - (dayInd))) + 1;
         // returns starting index
     }
