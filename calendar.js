@@ -36,7 +36,6 @@ function listOfMonths() {
     currentMonth = months[today.slice(12, 16)];
     monthsList = Object.keys(months);
     let monthsToDisplay = [];
-    let monthDateArray = {};
 
     let countInd = 0;
     for (var month of monthsList) {
@@ -55,11 +54,24 @@ function listOfMonths() {
     return monthsToDisplay;
 }
 
+function listOfDays(monthsToDisplay) {
+    let listOfDates = [];
+    for (var month of monthsToDisplay) {
+        for (var x = 1; x >= months[month]; x++) {
+            listOfDates.push(x);
+        }
+    }
+    return listOfDates;
+}
+
 // select js objects
 const calendarsContainer = document.querySelector('#calendarContainer');
 const count = 1;
 
 const startInd = startDate(today);
+
+//
+const monthsToDisplay= listOfMonths();
 
 // make calendar js objects
 for (var x = 0; x < monthsToShow ; x++){
@@ -84,7 +96,7 @@ for (var x = 0; x < monthsToShow ; x++){
             for (var j = 0; j < 7; j++) {
                 const calendarCol = document.createElement('td');
                 if (i === 1 && startInd >= j) {
-                    const cellText = document.createTextNode("heyyyy");
+                    const cellText = document.createTextNode();
                 }
                 
                 
