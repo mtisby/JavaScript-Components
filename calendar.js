@@ -54,7 +54,7 @@ function listOfMonths() {
     return monthsToDisplay;
 }
 
-function listOfDays(monthsToDisplay) {
+function listDates(monthsToDisplay) {
     let listOfDates = [];
     for (var month of monthsToDisplay) {
         for (var x = 1; x >= months[month]; x++) {
@@ -72,7 +72,7 @@ const startInd = startDate(today);
 
 //
 const monthsToDisplay= listOfMonths();
-
+const listOfDates = listDates();
 // make calendar js objects
 for (var x = 0; x < monthsToShow ; x++){
     //make table
@@ -93,15 +93,16 @@ for (var x = 0; x < monthsToShow ; x++){
                 calendarRow.appendChild(calendarCol);
             }
         } else {
+            counting = 0;
             for (var j = 0; j < 7; j++) {
                 const calendarCol = document.createElement('td');
                 if (i === 1 && startInd >= j) {
-                    const cellText = document.createTextNode();
+                    const cellText = document.createTextNode(listOfDates[counting]);
                 }
                 
                 
 
-                
+                counting++;
                 calendarCol.appendChild(cellText);
                 calendarRow.appendChild(calendarCol);
             }
