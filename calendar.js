@@ -7,6 +7,7 @@ const daysOfWeek = [[1, "Sun"], [2, "Mon"], [3, "Tue"],  [4, "Wed"],  [5, "Thu"]
 const daysOfWeekDict = { Sun: 1, Mon: 2, Tue: 3, Wed: 4, Thu: 5, Fri: 6, Sat: 7};
 const today = Date();
 const start = 1;
+const monthsToShow = 1;
 
 // check if leap it is a Leap Year
 if (parseInt(today.slice(12, 16), 10) % 4 === 0) {
@@ -33,9 +34,12 @@ function startDate(currentDate) {
 
 // select js objects
 const calendarsContainer = document.querySelector('#calendarContainer');
+const count = 1;
+
+const startInd = startDate(today);
 
 // make calendar js objects
-for (var x = 0; x < 3; x++){
+for (var x = 0; x < monthsToShow ; x++){
     //make table
     const calendarTable = document.createElement('table');
 
