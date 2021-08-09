@@ -8,7 +8,7 @@ const daysOfWeek = [[1, "Sun"], [2, "Mon"], [3, "Tue"],  [4, "Wed"],  [5, "Thu"]
 const daysOfWeekDict = { Sun: 1, Mon: 2, Tue: 3, Wed: 4, Thu: 5, Fri: 6, Sat: 7};
 const today = Date();
 const start = 1;
-const monthsToShow = 1;
+const monthsToShow = 3;
 
 // check if leap it is a Leap Year
 if (parseInt(today.slice(12, 16), 10) % 4 === 0) {
@@ -43,7 +43,7 @@ function listOfMonths() {
             if (monthsToShow <= 1) {
                 monthsToDisplay.push(month);
             } else {
-                for (var x = 0; x <= monthsToShow; x++) {
+                for (var x = 0; x < monthsToShow; x++) {
                     monthsToDisplay.push(monthsList[countInd + x]);
                 }
             }
@@ -58,7 +58,7 @@ function listDates(monthsToDisplay) {
     let listOfDates = [];
     console.log(monthsToDisplay);
     for (var i of monthsToDisplay) {
-        for (var x = 1; x <= months[i]; x++) {
+        for (var x = 1; x <= months[i]+1; x++) {
             listOfDates.push(x);
         }
     }
@@ -71,13 +71,17 @@ const count = 1;
 
 const startInd = startDate(today);
 
-//
+// get what months and their dates to display
 const monthsToDisplay= listOfMonths();
 const listOfDates = listDates(monthsToDisplay);
-console.log(listOfDates);
+
+console.log(listOfDates)
+
 // make calendar js objects
 for (var x = 0; x < monthsToShow ; x++){
     //make table
+    const header = document.createElement('h1');
+    header.innerText = monthsToDisplay[x];
     const calendarTable = document.createElement('table');
 
     // make table body
@@ -100,7 +104,7 @@ for (var x = 0; x < monthsToShow ; x++){
                 const calendarCol = document.createElement('td');
                 console.log(startInd)
                 if (startInd >= j) {
-                    if (counting <= listOfDates[listOfDates.length - 1]) {
+                    if (counting < listOfDates[listOfDates.length - 1]) {
                         const cellText = document.createTextNode(listOfDates[counting]);
                         calendarCol.appendChild(cellText);
                     }
@@ -117,7 +121,9 @@ for (var x = 0; x < monthsToShow ; x++){
     }
 
     calendarTable.appendChild(tableBody);
+    calendarsContainer.appendChild(header);
     calendarsContainer.appendChild(calendarTable);
+    
 };
 
 
