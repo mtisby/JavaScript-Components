@@ -58,9 +58,11 @@ function listDates(monthsToDisplay) {
     let listOfDates = [];
     console.log(monthsToDisplay);
     for (var i of monthsToDisplay) {
-        for (var x = 1; x <= months[i]+1; x++) {
-            listOfDates.push(x);
+        let addlist = [];
+        for (var x = 1; x <= months[i]; x++) {
+            addlist.push(x);
         }
+        listOfDates.push(addlist);
     }
     return listOfDates;
 }
@@ -69,20 +71,30 @@ function listDates(monthsToDisplay) {
 const calendarsContainer = document.querySelector('#calendarContainer');
 const count = 1;
 
-const startInd = startDate(today);
+let startInd = startDate(today);
 
 // get what months and their dates to display
 const monthsToDisplay= listOfMonths();
 const listOfDates = listDates(monthsToDisplay);
 
 console.log(listOfDates)
+let newStartInd = 0;
 
 // make calendar js objects
-for (var x = 0; x < monthsToShow ; x++){
+for (var x = 0; x < monthsToShow; x++){
+    if (x > 0) {
+        startInd = newStartInd;
+        console.log(startInd + 'this is newInd')
+    }
+
     //make table
     const header = document.createElement('h1');
     header.innerText = monthsToDisplay[x];
     const calendarTable = document.createElement('table');
+    calendarTable.classList;
+    calendarTable.classList.add('table', 'textCenter');
+    header.classList;
+    header.classList.add('textCenter');
 
     // make table body
     const tableBody = document.createElement('tbody');
@@ -93,8 +105,11 @@ for (var x = 0; x < monthsToShow ; x++){
         const calendarRow = document.createElement('tr');
         if (i === 0) {
             for (var j = 0; j < 7; j++) {
-                
                 const calendarCol = document.createElement('td');
+                calendarCol.classList;
+                calendarCol.classList.add('textCenter');
+
+
                 const cellText = document.createTextNode(daysOfWeek[j][1]);
                 calendarCol.appendChild(cellText);
                 calendarRow.appendChild(calendarCol);
@@ -102,11 +117,29 @@ for (var x = 0; x < monthsToShow ; x++){
         } else {
             for (var j = 0; j < 7; j++) {
                 const calendarCol = document.createElement('td');
-                console.log(startInd)
-                if (startInd >= j) {
-                    if (counting < listOfDates[listOfDates.length - 1]) {
-                        const cellText = document.createTextNode(listOfDates[counting]);
+                calendarCol.classList;
+                calendarCol.classList.add('textCenter');
+                calendarCol.classList;
+                calendarCol.classList.add('table')
+
+                console.log('I am j: ' + j)
+                console.log('I am start: ' + startInd)
+                if (i === 1 && startInd >= j) {
+                    if (counting <= listOfDates[x][listOfDates[x].length - 1]) {
+                        const cellText = document.createTextNode(listOfDates[x][counting]);
                         calendarCol.appendChild(cellText);
+                    } else {
+                        const cellText = document.createTextNode('I should be empty');
+                        calendarCol.appendChild(cellText);
+                    }
+                } else if (i > 1 && startInd >= j){
+                    if (counting < listOfDates[x][listOfDates[x].length - 1]) {
+                        const cellText = document.createTextNode(listOfDates[x][counting]);
+                        calendarCol.appendChild(cellText);
+                    } else if (counting === listOfDates[x][listOfDates[x].length - 1]) {
+                        // figure out how to save starting index
+                        newStartInd = j + 1;
+                        console.log('this is new index: '+j)
                     }
                 }
                 
@@ -115,9 +148,14 @@ for (var x = 0; x < monthsToShow ; x++){
                 counting++;
                 // calendarCol.appendChild(cellText);
                 calendarRow.appendChild(calendarCol);
+                
             }
+            
         }
+
+        
         tableBody.appendChild(calendarRow)
+        
     }
 
     calendarTable.appendChild(tableBody);
