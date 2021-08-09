@@ -32,6 +32,29 @@ function startDate(currentDate) {
     }
 }
 
+function listOfMonths() {
+    currentMonth = months[today.slice(12, 16)];
+    monthsList = Object.keys(months);
+    let monthsToDisplay = [];
+    let monthDateArray = {};
+
+    let countInd = 0;
+    for (var month of monthsList) {
+        if (month === currentMonth) {
+            if (monthsToShow <= 1) {
+                monthsToDisplay.push(month);
+            } else {
+                for (var x = 0; x <= monthsToShow; x++) {
+                    monthsToDisplay.push(monthsList[countInd + x]);
+                }
+            }
+        } 
+        countInd++;
+    }
+
+    return monthsToDisplay;
+}
+
 // select js objects
 const calendarsContainer = document.querySelector('#calendarContainer');
 const count = 1;
@@ -60,7 +83,11 @@ for (var x = 0; x < monthsToShow ; x++){
         } else {
             for (var j = 0; j < 7; j++) {
                 const calendarCol = document.createElement('td');
-                const cellText = document.createTextNode("heyyyy");
+                if (i === 1 && startInd >= j) {
+                    const cellText = document.createTextNode("heyyyy");
+                }
+                
+                
 
                 
                 calendarCol.appendChild(cellText);
