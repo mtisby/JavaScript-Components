@@ -88,6 +88,7 @@ for (var x = 0; x < monthsToShow; x++){
     }
 
     //make table
+    const divCalendar = document.createElement('div');
     const header = document.createElement('h1');
     header.innerText = monthsToDisplay[x];
     const calendarTable = document.createElement('table');
@@ -157,10 +158,10 @@ for (var x = 0; x < monthsToShow; x++){
         tableBody.appendChild(calendarRow)
         
     }
-
     calendarTable.appendChild(tableBody);
-    calendarsContainer.appendChild(header);
-    calendarsContainer.appendChild(calendarTable);
+    divCalendar.appendChild(header);
+    divCalendar.append(calendarTable);
+    calendarsContainer.appendChild(divCalendar);
     
 };
 
