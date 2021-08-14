@@ -125,33 +125,20 @@ for (var x = 0; x < monthsToShow; x++){
 
                 // console.log('I am j: ' + j)
                 // console.log('I am start: ' + startInd)
-                if (i === 1 && startInd === j) {
+                if (startInd >= j) {
                     const cellText = document.createTextNode(listOfDates[x][counting]);
                     calendarCol.appendChild(cellText);
                     counting++;
-                    console.log("THEY MATCH BRO");
                     
-                } else if (i > 1) { // used to be (i > 1 && startInd >= j)
-                    if (counting < listOfDates[x][listOfDates[x].length - 1]) {
-                        const cellText = document.createTextNode(listOfDates[x][counting]);
-                        calendarCol.appendChild(cellText);
-                        counting++;
-                    } else if (counting === listOfDates[x][listOfDates[x].length - 1]) {
+                    if (counting === listOfDates[x][listOfDates[x].length - 1]) {
                         // figure out how to save starting index
                         newStartInd = j + 1;
                         console.log('this is new index: ' + j)
                     }
-                } else if (i === 1 && startInd < j) {
+                } else if (startInd < j) {
                     const cellText = document.createTextNode(listOfDates[x][counting]);
                         calendarCol.appendChild("I should be empty");
-                }else {
-                    const cellText = document.createTextNode(listOfDates[x][counting]);
-                    calendarCol.appendChild(cellText);
-                    counting++;
                 }
-                
-                
-
     
                 // calendarCol.appendChild(cellText);
                 calendarRow.appendChild(calendarCol);
