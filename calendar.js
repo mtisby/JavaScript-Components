@@ -123,30 +123,36 @@ for (var x = 0; x < monthsToShow; x++){
                 calendarCol.classList;
                 calendarCol.classList.add('table')
 
-                console.log('I am j: ' + j)
-                console.log('I am start: ' + startInd)
-                if (i === 1 && startInd >= j) {
-                    if (counting <= listOfDates[x][listOfDates[x].length - 1]) {
-                        const cellText = document.createTextNode(listOfDates[x][counting]);
-                        calendarCol.appendChild(cellText);
-                    } else {
-                        const cellText = document.createTextNode('I should be empty');
-                        calendarCol.appendChild(cellText);
-                    }
-                } else if (i > 1 && startInd >= j){
+                // console.log('I am j: ' + j)
+                // console.log('I am start: ' + startInd)
+                if (i === 1 && startInd === j) {
+                    const cellText = document.createTextNode(listOfDates[x][counting]);
+                    calendarCol.appendChild(cellText);
+                    counting++;
+                    console.log("THEY MATCH BRO");
+                    
+                } else if (i > 1) { // used to be (i > 1 && startInd >= j)
                     if (counting < listOfDates[x][listOfDates[x].length - 1]) {
                         const cellText = document.createTextNode(listOfDates[x][counting]);
                         calendarCol.appendChild(cellText);
+                        counting++;
                     } else if (counting === listOfDates[x][listOfDates[x].length - 1]) {
                         // figure out how to save starting index
                         newStartInd = j + 1;
-                        console.log('this is new index: '+j)
+                        console.log('this is new index: ' + j)
                     }
+                } else if (i === 1 && startInd < j) {
+                    const cellText = document.createTextNode(listOfDates[x][counting]);
+                        calendarCol.appendChild("I should be empty");
+                }else {
+                    const cellText = document.createTextNode(listOfDates[x][counting]);
+                    calendarCol.appendChild(cellText);
+                    counting++;
                 }
                 
                 
 
-                counting++;
+    
                 // calendarCol.appendChild(cellText);
                 calendarRow.appendChild(calendarCol);
                 
@@ -163,6 +169,7 @@ for (var x = 0; x < monthsToShow; x++){
     divCalendar.append(calendarTable);
     calendarsContainer.appendChild(divCalendar);
     
+    calendarsContainer.classList.add('flexboxCalendar');
 };
 
 
