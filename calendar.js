@@ -10,6 +10,9 @@ const today = Date();
 const start = 1;
 const monthsToShow = 3;
 
+// debugging 
+debugging === true;
+
 // check if leap it is a Leap Year
 if (parseInt(today.slice(12, 16), 10) % 4 === 0) {
     months[Feb] = 29;
@@ -80,7 +83,6 @@ let newStartInd = 0;
 
 // make calendar js objects
 for (var x = 0; x < monthsToShow; x++){
-    console.log("THIS IS X: " + x)
     if (x > 0) {
         startInd = newStartInd;
     }
@@ -114,6 +116,10 @@ for (var x = 0; x < monthsToShow; x++){
                 calendarRow.appendChild(calendarCol);
             }
         } else if (i === 1) {
+            if (debugging === true) {
+                console.log(`this is the starting index ${startInd}`)
+            }
+
             for (var j = 0; j < 7; j++) {
                 const calendarCol = document.createElement('td');
                 calendarCol.classList;
@@ -125,7 +131,6 @@ for (var x = 0; x < monthsToShow; x++){
                     const cellText = document.createTextNode("I should be empty");
                     calendarCol.appendChild(cellText);
                 } else if (j + 1 >= startInd) {
-                    console.log("start the count")
                     const cellText = document.createTextNode(listOfDates[x][counting]);
                     calendarCol.appendChild(cellText);
                     counting++
