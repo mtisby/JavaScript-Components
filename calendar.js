@@ -125,19 +125,20 @@ for (var x = 0; x < monthsToShow; x++){
 
                 // console.log('I am j: ' + j)
                 // console.log('I am start: ' + startInd)
-                if (startInd >= j) {
+                if (startInd >= j && i === 1) {
                     const cellText = document.createTextNode(listOfDates[x][counting]);
                     calendarCol.appendChild(cellText);
                     counting++;
-                    
+                
+                } else if (counting >= listOfDates[x][listOfDates[x].length - 1]) {
                     if (counting === listOfDates[x][listOfDates[x].length - 1]) {
                         // figure out how to save starting index
                         newStartInd = j + 1;
                         console.log('this is new index: ' + j)
+                    } else {
+                        const cellText = document.createTextNode("I should be empty!!!");
+                        calendarCol.appendChild(cellText);
                     }
-                } else if (startInd < j) {
-                    const cellText = document.createTextNode(listOfDates[x][counting]);
-                        calendarCol.appendChild("I should be empty");
                 }
     
                 // calendarCol.appendChild(cellText);
