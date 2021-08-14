@@ -56,7 +56,6 @@ function listOfMonths() {
 
 function listDates(monthsToDisplay) {
     let listOfDates = [];
-    console.log(monthsToDisplay);
     for (var i of monthsToDisplay) {
         let addlist = [];
         for (var x = 1; x <= months[i]; x++) {
@@ -77,14 +76,13 @@ let startInd = startDate(today);
 const monthsToDisplay= listOfMonths();
 const listOfDates = listDates(monthsToDisplay);
 
-console.log(listOfDates)
 let newStartInd = 0;
 
 // make calendar js objects
 for (var x = 0; x < monthsToShow; x++){
+    console.log("THIS IS X: " + x)
     if (x > 0) {
         startInd = newStartInd;
-        console.log(startInd + 'this is newInd')
     }
 
     //make table
@@ -102,7 +100,7 @@ for (var x = 0; x < monthsToShow; x++){
 
     let counting = 0;
     // make table rows and columns
-    for (var i = 0; i < 6; i++) {
+    for (var i = 0; i < 7; i++) {
         const calendarRow = document.createElement('tr');
         if (i === 0) {
             for (var j = 0; j < 7; j++) {
@@ -115,6 +113,26 @@ for (var x = 0; x < monthsToShow; x++){
                 calendarCol.appendChild(cellText);
                 calendarRow.appendChild(calendarCol);
             }
+        } else if (i === 1) {
+            for (var j = 0; j < 7; j++) {
+                const calendarCol = document.createElement('td');
+                calendarCol.classList;
+                calendarCol.classList.add('textCenter');
+                calendarCol.classList;
+                calendarCol.classList.add('table');
+
+                if (j + 1 < startInd) {
+                    const cellText = document.createTextNode("I should be empty");
+                    calendarCol.appendChild(cellText);
+                } else if (j + 1 >= startInd) {
+                    console.log("start the count")
+                    const cellText = document.createTextNode(listOfDates[x][counting]);
+                    calendarCol.appendChild(cellText);
+                    counting++
+                }
+                calendarRow.appendChild(calendarCol);
+                
+            }
         } else {
             for (var j = 0; j < 7; j++) {
                 const calendarCol = document.createElement('td');
@@ -123,28 +141,19 @@ for (var x = 0; x < monthsToShow; x++){
                 calendarCol.classList;
                 calendarCol.classList.add('table')
 
-                // console.log('I am j: ' + j)
-                // console.log('I am start: ' + startInd)
-                if (startInd >= j && i === 1) {
+                if (counting === listOfDates[x][listOfDates[x].length - 1]) {
+                    // figure out how to save starting index
+                    newStartInd = j + 1;
+                } else if (counting < listOfDates[x][listOfDates[x].length - 1]) {
                     const cellText = document.createTextNode(listOfDates[x][counting]);
                     calendarCol.appendChild(cellText);
-                    counting++;
-                
-                } else if (counting >= listOfDates[x][listOfDates[x].length - 1]) {
-                    if (counting === listOfDates[x][listOfDates[x].length - 1]) {
-                        // figure out how to save starting index
-                        newStartInd = j + 1;
-                        console.log('this is new index: ' + j)
-                    } else {
-                        const cellText = document.createTextNode("I should be empty!!!");
-                        calendarCol.appendChild(cellText);
-                    }
+                    counting++
                 }
     
                 // calendarCol.appendChild(cellText);
                 calendarRow.appendChild(calendarCol);
-                
             }
+
             
         }
 
