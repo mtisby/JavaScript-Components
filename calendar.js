@@ -8,7 +8,7 @@ const daysOfWeek = [[1, "Sun"], [2, "Mon"], [3, "Tue"],  [4, "Wed"],  [5, "Thu"]
 const daysOfWeekDict = { Sun: 1, Mon: 2, Tue: 3, Wed: 4, Thu: 5, Fri: 6, Sat: 7};
 const today = Date();
 const start = 1;
-const monthsToShow = 5;
+const monthsToShow = 4;
 
 // debugging 
 const debugging = false;
@@ -31,25 +31,6 @@ function startDate(currentDate) {
 
     const remainder = dateNum % 7;
     return Math.abs(dayInd - remainder);
-
-    // if (dateNum > 7) {
-    //     const remainder = dateNum % 7;
-    //     if (remainder > 0) {
-    //         return 7 - remainder;
-    //     } else {
-    //         return dayInd;
-    //     }
-    //     // returns starting index
-    // } else {
-    //     if (dateNum % dayInd === 0) {
-    //         if (debugging === true) {
-    //             console.log('where are we');
-    //         }
-    //         return dayInd;
-    //     } else {
-    //         return Math.abs(dayInd - dateNum) + 1;
-    //     }
-    // }
 }
 
 function listOfMonths() {
@@ -63,13 +44,24 @@ function listOfMonths() {
                 monthsToDisplay.push(month);
             } else {
                 for (var x = 0; x < monthsToShow; x++) {
-                    monthsToDisplay.push(monthsList[countInd + x]);
+                    if (monthsList[countInd + x] === undefined) {
+                        countInd = 0;
+                        console.log(monthsToShow - (x + 1))
+                        for (var restart = 0; restart < (monthsToShow - x); restart++) {
+                            console.log(restart);
+                            monthsToDisplay.push(monthsList[restart]);
+                        }
+                        break
+                    } else {
+                        monthsToDisplay.push(monthsList[countInd + x]);
+                    }
+                    
                 }
             }
         } 
         countInd++;
     }
-
+    console.log(monthsToDisplay)
     return monthsToDisplay;
 }
 
@@ -102,15 +94,16 @@ if (debugging === true) {
 let newStartInd = 0;
 
 // make calendar js objects
-for (var x = 0; x < monthsToShow; x++){
+for (var x = 0; x < monthsToShow; x++) {
     if (x > 0) {
         // lastInd = listOfDates[x].length;
         // startInd = listOfDates[x-1][lastInd]
         startInd = newStartInd;
-     }
+    }
 
     if (debugging3 === true) {
         console.log(`current month ${monthsToDisplay[x]}`)
+        console.log(`number of dates ${listOfDates[x]}`)
         console.log(`this is the new index: ${startInd}`)
     }
     //make table
@@ -130,7 +123,9 @@ for (var x = 0; x < monthsToShow; x++){
     let numOfRows = 0;
     if (startInd >= 5) {
         numOfRows = Math.ceil(listOfDates[x][(listOfDates[x]).length - 1] / 7) + 2;
-    } else {
+    } else if (monthsToDisplay[x] === 'Feb' && startInd != 1) {
+        numOfRows = Math.ceil(listOfDates[x][(listOfDates[x]).length - 1] / 7) + 2;
+    }else {
         numOfRows = Math.ceil(listOfDates[x][(listOfDates[x]).length - 1] / 7) + 1;
     }
     
