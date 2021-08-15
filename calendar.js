@@ -109,7 +109,7 @@ for (var x = 0; x < monthsToShow; x++){
         startInd = newStartInd;
      }
 
-    if (debugging2 === true) {
+    if (debugging3 === true) {
         console.log(`current month ${monthsToDisplay[x]}`)
         console.log(`this is the new index: ${startInd}`)
     }
@@ -127,12 +127,21 @@ for (var x = 0; x < monthsToShow; x++){
     const tableBody = document.createElement('tbody');
 
     let counting = 0;
-    let numOfRows = Math.ceil(listOfDates[x][(listOfDates[x]).length - 1] / 7) + 1;
+    let numOfRows = 0;
+    if (startInd >= 5) {
+        numOfRows = Math.ceil(listOfDates[x][(listOfDates[x]).length - 1] / 7) + 2;
+    } else {
+        numOfRows = Math.ceil(listOfDates[x][(listOfDates[x]).length - 1] / 7) + 1;
+    }
+    
     if (debugging3 === true) {
         console.log(`num of rows: ${numOfRows}`)
     }
     // make table rows and columns
-    for (var i = 0; i < 7; i++) {
+    for (var i = 0; i < numOfRows; i++) {
+        if (debugging3 === true) {
+            console.log(`ignore`)
+        }
         const calendarRow = document.createElement('tr');
         if (i === 0) {
             for (var j = 0; j < 7; j++) {
