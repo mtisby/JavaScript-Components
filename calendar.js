@@ -8,11 +8,12 @@ const daysOfWeek = [[1, "Sun"], [2, "Mon"], [3, "Tue"],  [4, "Wed"],  [5, "Thu"]
 const daysOfWeekDict = { Sun: 1, Mon: 2, Tue: 3, Wed: 4, Thu: 5, Fri: 6, Sat: 7};
 const today = Date();
 const start = 1;
-const monthsToShow = 3;
+const monthsToShow = 5;
 
 // debugging 
 const debugging = false;
-const debugging2 = true;
+const debugging2 = false;
+const debugging3 = true;
 
 // check if leap it is a Leap Year
 if (parseInt(today.slice(12, 16), 10) % 4 === 0) {
@@ -94,7 +95,7 @@ let startInd = startDate(today);
 const monthsToDisplay= listOfMonths();
 const listOfDates = listDates(monthsToDisplay);
 
-if (debugging2 === true) {
+if (debugging === true) {
     console.log(listOfDates)
 }
 
@@ -103,11 +104,13 @@ let newStartInd = 0;
 // make calendar js objects
 for (var x = 0; x < monthsToShow; x++){
     if (x > 0) {
-        lastInd = listOfDates.length;
-        startInd = listOfDates[x-1][lastInd]
+        // lastInd = listOfDates[x].length;
+        // startInd = listOfDates[x-1][lastInd]
+        startInd = newStartInd;
      }
 
     if (debugging2 === true) {
+        console.log(`current month ${monthsToDisplay[x]}`)
         console.log(`this is the new index: ${startInd}`)
     }
     //make table
@@ -124,6 +127,10 @@ for (var x = 0; x < monthsToShow; x++){
     const tableBody = document.createElement('tbody');
 
     let counting = 0;
+    let numOfRows = Math.ceil(listOfDates[x][(listOfDates[x]).length - 1] / 7) + 1;
+    if (debugging3 === true) {
+        console.log(`num of rows: ${numOfRows}`)
+    }
     // make table rows and columns
     for (var i = 0; i < 7; i++) {
         const calendarRow = document.createElement('tr');
@@ -140,18 +147,15 @@ for (var x = 0; x < monthsToShow; x++){
             }
         } else if (i === 1) {
             for (var j = 0; j < 7; j++) {
-                if (debugging === true) {
-                    console.log(`this is the starting index ${startInd} and this is j ${j}`)
-                }
                 const calendarCol = document.createElement('td');
                 calendarCol.classList;
                 calendarCol.classList.add('textCenter');
                 calendarCol.classList;
                 calendarCol.classList.add('table');
 
-                if (j + 1 < startInd) {
-                    const cellText = document.createTextNode("I should be empty");
-                    calendarCol.appendChild(cellText);
+                if (j < startInd) {
+                    // const cellText = document.createTextNode("I should be empty");
+                    // calendarCol.appendChild(cellText);
                 } else if (j + 1 >= startInd) {
                     const cellText = document.createTextNode(listOfDates[x][counting]);
                     calendarCol.appendChild(cellText);
@@ -161,17 +165,39 @@ for (var x = 0; x < monthsToShow; x++){
                 
             }
         } else {
+            if (debugging === true) {
+                console.log(`this is counting ${counting}`)
+            }
             for (var j = 0; j < 7; j++) {
                 const calendarCol = document.createElement('td');
                 calendarCol.classList;
                 calendarCol.classList.add('textCenter');
                 calendarCol.classList;
-                calendarCol.classList.add('table')
+                calendarCol.classList.add('table');
+
+                if (debugging2 === true) {
+                    console.log(`this is j ${j} and this is the current date ${listOfDates[x][counting]}`)
+                }
+
 
                 if (counting < listOfDates[x][listOfDates[x].length - 1]) {
                     const cellText = document.createTextNode(listOfDates[x][counting]);
                     calendarCol.appendChild(cellText);
+
                     counting++
+                }
+
+                if (listOfDates[x][counting] === listOfDates[x][(listOfDates[x]).length - 1]) {
+                    if (debugging2 === true) {
+                        console.log(`last date: ${listOfDates[x][counting]}`)
+                        console.log(`this is j ${j}`)
+                    }
+
+                    if (j === 6) {
+                        newStartInd = 1;
+                    } else {
+                        newStartInd = j + 2;
+                    }
                 }
     
                 // calendarCol.appendChild(cellText);
