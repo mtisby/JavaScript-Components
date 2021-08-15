@@ -8,7 +8,7 @@ const daysOfWeek = [[1, "Sun"], [2, "Mon"], [3, "Tue"],  [4, "Wed"],  [5, "Thu"]
 const daysOfWeekDict = { Sun: 1, Mon: 2, Tue: 3, Wed: 4, Thu: 5, Fri: 6, Sat: 7};
 const today = Date();
 const start = 1;
-const monthsToShow = 4;
+const monthsToShow = 6;
 
 // debugging 
 const debugging = false;
@@ -96,13 +96,11 @@ let newStartInd = 0;
 // make calendar js objects
 for (var x = 0; x < monthsToShow; x++) {
     if (x > 0) {
-        // lastInd = listOfDates[x].length;
-        // startInd = listOfDates[x-1][lastInd]
         startInd = newStartInd;
     }
 
     if (debugging3 === true) {
-        console.log(`current month ${monthsToDisplay[x]}`)
+        console.log(`current month ${monthsToDisplay[x]} and ${today.slice(4,7)}`)
         console.log(`number of dates ${listOfDates[x]}`)
         console.log(`this is the new index: ${startInd}`)
     }
@@ -114,7 +112,7 @@ for (var x = 0; x < monthsToShow; x++) {
     calendarTable.classList;
     calendarTable.classList.add('table', 'textCenter');
     header.classList;
-    header.classList.add('textCenter');
+    header.classList.add('textCenter', 'calendarHeading');
 
     // make table body
     const tableBody = document.createElement('tbody');
@@ -158,11 +156,18 @@ for (var x = 0; x < monthsToShow; x++) {
                 calendarCol.classList.add('table');
 
                 if (j < startInd) {
-                    // const cellText = document.createTextNode("I should be empty");
-                    // calendarCol.appendChild(cellText);
+                    // keep empty
                 } else if (j + 1 >= startInd) {
                     const cellText = document.createTextNode(listOfDates[x][counting]);
                     calendarCol.appendChild(cellText);
+                    if (listOfDates[x][counting] === parseInt(today.slice(8, 10)) && monthsToDisplay[x] === today.slice(4,7)) {
+                        calendarCol.classList;
+                        calendarCol.classList.add('today');
+                    } else if (listOfDates[x][counting] < parseInt(today.slice(8, 10)) && monthsToDisplay[x] === today.slice(4, 7)) {
+                        calendarCol.classList;
+                        calendarCol.classList.add('beforeToday');
+                    }
+
                     counting++
                 }
                 calendarRow.appendChild(calendarCol);
@@ -188,6 +193,14 @@ for (var x = 0; x < monthsToShow; x++) {
                     const cellText = document.createTextNode(listOfDates[x][counting]);
                     calendarCol.appendChild(cellText);
 
+                    if (listOfDates[x][counting] === parseInt(today.slice(8, 10)) && monthsToDisplay[x] === today.slice(4, 7)) {
+                        calendarCol.classList;
+                        calendarCol.classList.add('today');
+                    } else if (listOfDates[x][counting] < parseInt(today.slice(8, 10)) && monthsToDisplay[x] === today.slice(4, 7)) {
+                        calendarCol.classList;
+                        calendarCol.classList.add('beforeToday');
+                    }
+
                     counting++
                 }
 
@@ -204,7 +217,6 @@ for (var x = 0; x < monthsToShow; x++) {
                     }
                 }
     
-                // calendarCol.appendChild(cellText);
                 calendarRow.appendChild(calendarCol);
             }
 
