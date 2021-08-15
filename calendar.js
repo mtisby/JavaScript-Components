@@ -11,7 +11,8 @@ const start = 1;
 const monthsToShow = 3;
 
 // debugging 
-debugging === true;
+const debugging = false;
+const debugging2 = true;
 
 // check if leap it is a Leap Year
 if (parseInt(today.slice(12, 16), 10) % 4 === 0) {
@@ -23,17 +24,31 @@ function startDate(currentDate) {
     const dayInd = daysOfWeekDict[today.slice(0, 3)];
     const dateNum = parseInt(today.slice(8, 10));
 
-    if (dateNum > 7) {
-        const remainder = dateNum % dayInd;
-        return 7 - remainder + 1; 
-        // returns starting index
-    } else {
-        if (dayInd / dateNum === 0) {
-            return dayInd;
-        } else {
-            return Math.abs(dayInd - dateNum) + 1
-        }
+    if (debugging === true) {
+        console.log(`THIS IS DATE NUM: ${dateNum}`);
     }
+
+    const remainder = dateNum % 7;
+    return Math.abs(dayInd - remainder);
+
+    // if (dateNum > 7) {
+    //     const remainder = dateNum % 7;
+    //     if (remainder > 0) {
+    //         return 7 - remainder;
+    //     } else {
+    //         return dayInd;
+    //     }
+    //     // returns starting index
+    // } else {
+    //     if (dateNum % dayInd === 0) {
+    //         if (debugging === true) {
+    //             console.log('where are we');
+    //         }
+    //         return dayInd;
+    //     } else {
+    //         return Math.abs(dayInd - dateNum) + 1;
+    //     }
+    // }
 }
 
 function listOfMonths() {
@@ -79,14 +94,22 @@ let startInd = startDate(today);
 const monthsToDisplay= listOfMonths();
 const listOfDates = listDates(monthsToDisplay);
 
+if (debugging2 === true) {
+    console.log(listOfDates)
+}
+
 let newStartInd = 0;
 
 // make calendar js objects
 for (var x = 0; x < monthsToShow; x++){
     if (x > 0) {
-        startInd = newStartInd;
-    }
+        lastInd = listOfDates.length;
+        startInd = listOfDates[x-1][lastInd]
+     }
 
+    if (debugging2 === true) {
+        console.log(`this is the new index: ${startInd}`)
+    }
     //make table
     const divCalendar = document.createElement('div');
     const header = document.createElement('h1');
@@ -116,11 +139,10 @@ for (var x = 0; x < monthsToShow; x++){
                 calendarRow.appendChild(calendarCol);
             }
         } else if (i === 1) {
-            if (debugging === true) {
-                console.log(`this is the starting index ${startInd}`)
-            }
-
             for (var j = 0; j < 7; j++) {
+                if (debugging === true) {
+                    console.log(`this is the starting index ${startInd} and this is j ${j}`)
+                }
                 const calendarCol = document.createElement('td');
                 calendarCol.classList;
                 calendarCol.classList.add('textCenter');
@@ -146,10 +168,7 @@ for (var x = 0; x < monthsToShow; x++){
                 calendarCol.classList;
                 calendarCol.classList.add('table')
 
-                if (counting === listOfDates[x][listOfDates[x].length - 1]) {
-                    // figure out how to save starting index
-                    newStartInd = j + 1;
-                } else if (counting < listOfDates[x][listOfDates[x].length - 1]) {
+                if (counting < listOfDates[x][listOfDates[x].length - 1]) {
                     const cellText = document.createTextNode(listOfDates[x][counting]);
                     calendarCol.appendChild(cellText);
                     counting++
