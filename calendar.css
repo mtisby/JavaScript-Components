@@ -2,12 +2,26 @@ html{
     --tdHeightFixed: 3em;
     --tdWidthFixed: 1.5em;
     --lightGrey: #a3a3a3;
+    --todayColor: #6fa0a3;
+    --fontOne: 'Heebo', sans-serif;
+    --fontTwo: 'Noto Sans HK', sans-serif;
+    --fontThree: 'Poppins', sans-serif;
+    --fontFour: 'Source Sans Pro', sans-serif;
+    --fontFive: 'Titillium Web', sans-serif;
+    --fontSix: 'Ubuntu', sans-serif;
+
+    font-family: var(--fontOne);
 }
 
 
 .textCenter{
     text-align: center;
-    padding: .25em;
+}
+
+.tableHead{
+    padding: .5em;
+    color: var(--lightGrey);
+    font-weight: bold;
 }
 
 .flexboxCalendar{
@@ -24,8 +38,9 @@ html{
 }
 
 .today{
-    background-color: var(--lightGrey);
-    border: 2px solid var(--lightGrey);
+    background-color: var(--todayColor);
+    border: 2px solid var(--todayColor);
+    border-radius: 50%;
 }
 
 .beforeToday {
@@ -42,4 +57,5 @@ html{
     min-width: var(--tdWidthFixed);
     max-height: var(--tdHeightFixed);
     max-width: var(--tdWidthFixed);
+    padding: .5em;
 }
