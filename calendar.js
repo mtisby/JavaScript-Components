@@ -151,7 +151,7 @@ for (var x = 0; x < monthsToShow; x++) {
             for (var j = 0; j < 7; j++) {
                 const calendarCol = document.createElement('td');
                 calendarCol.classList;
-                calendarCol.classList.add('textCenter', 'cellDesign', 'table');
+                calendarCol.classList.add('textCenter', 'cellDesign');
 
                 if (j < startInd) {
                     // keep empty
@@ -179,8 +179,6 @@ for (var x = 0; x < monthsToShow; x++) {
                 const calendarCol = document.createElement('td');
                 calendarCol.classList;
                 calendarCol.classList.add('textCenter');
-                calendarCol.classList;
-                calendarCol.classList.add('table');
 
                 if (debugging2 === true) {
                     console.log(`this is j ${j} and this is the current date ${listOfDates[x][counting]}`)

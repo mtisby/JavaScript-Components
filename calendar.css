@@ -1,11 +1,9 @@
 html{
     --tdHeightFixed: 3em;
     --tdWidthFixed: 1.5em;
+    --lightGrey: #a3a3a3;
 }
 
-.table{
-    border: 2.5px solid black;
-}
 
 .textCenter{
     text-align: center;
@@ -26,11 +24,12 @@ html{
 }
 
 .today{
-    background-color: blueviolet;
+    background-color: var(--lightGrey);
+    border: 2px solid var(--lightGrey);
 }
 
 .beforeToday {
-    background-color: grey;
+    color: var(--lightGrey);
 }
 
 .cellDesign{
