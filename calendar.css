@@ -1,3 +1,8 @@
+html{
+    --tdHeightFixed: 3em;
+    --tdWidthFixed: 1.5em;
+}
+
 .table{
     border: 2.5px solid black;
 }
@@ -26,4 +31,16 @@
 
 .beforeToday {
     background-color: grey;
+}
+
+.cellDesign{
+    /* min-height: 2em;
+    min-width: 2em;
+    max-height: 2em;
+    max-width: 2em; */
+
+    min-height: var(--tdHeightFixed);
+    min-width: var(--tdWidthFixed);
+    max-height: var(--tdHeightFixed);
+    max-width: var(--tdWidthFixed);
 }

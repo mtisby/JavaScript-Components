@@ -140,7 +140,7 @@ for (var x = 0; x < monthsToShow; x++) {
             for (var j = 0; j < 7; j++) {
                 const calendarCol = document.createElement('td');
                 calendarCol.classList;
-                calendarCol.classList.add('textCenter');
+                calendarCol.classList.add('textCenter', 'cellDesign');
 
 
                 const cellText = document.createTextNode(daysOfWeek[j][1]);
@@ -151,9 +151,7 @@ for (var x = 0; x < monthsToShow; x++) {
             for (var j = 0; j < 7; j++) {
                 const calendarCol = document.createElement('td');
                 calendarCol.classList;
-                calendarCol.classList.add('textCenter');
-                calendarCol.classList;
-                calendarCol.classList.add('table');
+                calendarCol.classList.add('textCenter', 'cellDesign', 'table');
 
                 if (j < startInd) {
                     // keep empty
