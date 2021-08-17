@@ -114,10 +114,19 @@ for (var x = 0; x < monthsToShow; x++) {
     calendarTable.classList.add('textCenter');
     header.classList;
     header.classList.add('textCenter', 'calendarHeading');
-    const popUpHeader = document.querySelector('#selectedDate');
-    popUpHeader.innerText = `select a time for the ${undefined} of ${monthsToDisplay[x]}`;
 
-    calendarTable.addEventListener('click', function onOpen() {
+    // figure out how to get td element with event listener
+   
+
+    calendarTable.addEventListener('click', function onOpen(e) {
+        const value = e.srcElement.innerText;
+        const popUpHeader = document.querySelector('#selectedDate');
+        popUpHeader.classList;
+        popUpHeader.classList.add('textCenter');
+        const monthValue = e.path[4].querySelector('h1').innerText;
+        console.log(monthValue);
+
+        popUpHeader.innerText = `${monthValue} ${value}`;
         if (typeof popUp.showModal === "function") {
             popUp.showModal();
         } else {

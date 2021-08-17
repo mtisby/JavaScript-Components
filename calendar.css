@@ -17,7 +17,6 @@ html{
 
 .textCenter{
     text-align: center;
-    padding: .5em;
 }
 
 .tableHead{
@@ -61,6 +60,7 @@ html{
     min-width: var(--tdWidthFixed);
     max-height: var(--tdHeightFixed);
     max-width: var(--tdWidthFixed);
+    padding: .5em;
 }
 
 .calendarDiv{
@@ -77,6 +77,7 @@ html{
 /*pop up*/
 .dialog{
     border: 2px solid rgba(0, 0, 0, 0.25);
+    border-radius: 1em;
 }
 
 /* interaction */
