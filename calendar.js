@@ -180,7 +180,6 @@ for (var x = 0; x < monthsToShow; x++) {
                 const calendarCol = document.createElement('td');
                 calendarCol.classList;
                 calendarCol.classList.add('textCenter', 'cellDesign');
-                calendarCol.addEventListener('click', display);
 
 
                 if (counting < listOfDates[x][listOfDates[x].length - 1]) {
