@@ -106,11 +106,13 @@ for (var x = 0; x < monthsToShow; x++) {
     }
     //make table
     const divCalendar = document.createElement('div');
+    divCalendar.classList;
+    divCalendar.classList.add('calendarDiv');
     const header = document.createElement('h1');
     header.innerText = monthsToDisplay[x];
     const calendarTable = document.createElement('table');
     calendarTable.classList;
-    calendarTable.classList.add('table', 'textCenter');
+    calendarTable.classList.add('textCenter');
     header.classList;
     header.classList.add('textCenter', 'calendarHeading');
 
@@ -164,6 +166,9 @@ for (var x = 0; x < monthsToShow; x++) {
                     } else if (listOfDates[x][counting] < parseInt(today.slice(8, 10)) && monthsToDisplay[x] === today.slice(4, 7)) {
                         calendarCol.classList;
                         calendarCol.classList.add('beforeToday');
+                    } else {
+                        calendarCol.classList;
+                        calendarCol.classList.add('dates');
                     }
 
                     counting++
@@ -178,7 +183,7 @@ for (var x = 0; x < monthsToShow; x++) {
             for (var j = 0; j < 7; j++) {
                 const calendarCol = document.createElement('td');
                 calendarCol.classList;
-                calendarCol.classList.add('textCenter');
+                calendarCol.classList.add('textCenter', 'cellDesign');
 
                 if (debugging2 === true) {
                     console.log(`this is j ${j} and this is the current date ${listOfDates[x][counting]}`)
@@ -195,6 +200,9 @@ for (var x = 0; x < monthsToShow; x++) {
                     } else if (listOfDates[x][counting] < parseInt(today.slice(8, 10)) && monthsToDisplay[x] === today.slice(4, 7)) {
                         calendarCol.classList;
                         calendarCol.classList.add('beforeToday');
+                    } else {
+                        calendarCol.classList;
+                        calendarCol.classList.add('dates');
                     }
 
                     counting++
