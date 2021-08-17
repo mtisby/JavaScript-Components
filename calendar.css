@@ -1,6 +1,6 @@
 html{
     --tdHeightFixed: 40px;
-    --tdWidthFixed: 30px;
+    --tdWidthFixed: 25px;
     --lightGrey: #a3a3a3;
     --todayColor: #434ff694;
     --hoverColor: #747dff;
@@ -78,6 +78,9 @@ html{
 .dates:hover{
     color: var(--hoverColor);
     font-weight: bold;
+    background-color: rgba(61, 61, 61, 0.10);
+    border: .01px solid rgba(61, 61, 61, 0.10);
+    border-radius: 2em;
 }
 
 .calendarDiv:hover{

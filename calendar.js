@@ -9,30 +9,25 @@ const daysOfWeekDict = { Sun: 1, Mon: 2, Tue: 3, Wed: 4, Thu: 5, Fri: 6, Sat: 7}
 const today = Date();
 const start = 1;
 const monthsToShow = 6;
+const count = 1;
 
-// debugging 
-const debugging = false;
-const debugging2 = false;
-const debugging3 = true;
 
+// quality check 
 // check if leap it is a Leap Year
 if (parseInt(today.slice(12, 16), 10) % 4 === 0) {
     months[Feb] = 29;
 }
 
 // functions 
+// finding starting index & the date
 function startDate(currentDate) {
     const dayInd = daysOfWeekDict[today.slice(0, 3)];
     const dateNum = parseInt(today.slice(8, 10));
 
-    if (debugging === true) {
-        console.log(`THIS IS DATE NUM: ${dateNum}`);
-    }
-
     const remainder = dateNum % 7;
     return Math.abs(dayInd - remainder);
 }
-
+// create and return a list which contains the name of the months to display
 function listOfMonths() {
     currentMonth = today.slice(4, 7);
     let monthsToDisplay = [];
@@ -64,7 +59,8 @@ function listOfMonths() {
     console.log(monthsToDisplay)
     return monthsToDisplay;
 }
-
+// returns an nested array of all of the days within each 
+// month that is needed to be displayed. Each nested array is a single month
 function listDates(monthsToDisplay) {
     let listOfDates = [];
     for (var i of monthsToDisplay) {
@@ -77,20 +73,37 @@ function listDates(monthsToDisplay) {
     return listOfDates;
 }
 
-// select js objects
-const calendarsContainer = document.querySelector('#calendarContainer');
-const count = 1;
-
-let startInd = startDate(today);
-
-// get what months and their dates to display
-const monthsToDisplay= listOfMonths();
-const listOfDates = listDates(monthsToDisplay);
-
-if (debugging === true) {
-    console.log(listOfDates)
+function getNumOfRows(listOfDates) {
+    let numOfRows = 0;
+    if (startInd >= 5) {
+        numOfRows = Math.ceil(listOfDates[x][(listOfDates[x]).length - 1] / 7) + 2;
+    } else if (monthsToDisplay[x] === 'Feb' && startInd != 1) {
+        numOfRows = Math.ceil(listOfDates[x][(listOfDates[x]).length - 1] / 7) + 2;
+    }else {
+        numOfRows = Math.ceil(listOfDates[x][(listOfDates[x]).length - 1] / 7) + 1;
+    }
+    return numOfRows
 }
 
+// function for pop-up modual 
+function display() {
+    if (typeof popUp.showModal === "function") {
+        popUp.showModal();
+      } else {
+        alert("The <dialog> API is not supported by this browser");
+      }
+}
+
+// select div container that will contain all displayed calendars
+const calendarsContainer = document.querySelector('#calendarContainer');
+const popUp = document.querySelector('#popUp');
+
+// call functions needed
+let startInd = startDate(today); // returns the starting date/index for the current month
+const monthsToDisplay= listOfMonths(); // get what months to display
+const listOfDates = listDates(monthsToDisplay); // get the dates for the corresponding months
+
+// global variable for holding a new starting index for iterations greater than 0
 let newStartInd = 0;
 
 // make calendar js objects
@@ -99,11 +112,6 @@ for (var x = 0; x < monthsToShow; x++) {
         startInd = newStartInd;
     }
 
-    if (debugging3 === true) {
-        console.log(`current month ${monthsToDisplay[x]} and ${today.slice(4,7)}`)
-        console.log(`number of dates ${listOfDates[x]}`)
-        console.log(`this is the new index: ${startInd}`)
-    }
     //make table
     const divCalendar = document.createElement('div');
     divCalendar.classList;
@@ -116,27 +124,16 @@ for (var x = 0; x < monthsToShow; x++) {
     header.classList;
     header.classList.add('textCenter', 'calendarHeading');
 
-    // make table body
-    const tableBody = document.createElement('tbody');
-
-    let counting = 0;
-    let numOfRows = 0;
-    if (startInd >= 5) {
-        numOfRows = Math.ceil(listOfDates[x][(listOfDates[x]).length - 1] / 7) + 2;
-    } else if (monthsToDisplay[x] === 'Feb' && startInd != 1) {
-        numOfRows = Math.ceil(listOfDates[x][(listOfDates[x]).length - 1] / 7) + 2;
-    }else {
-        numOfRows = Math.ceil(listOfDates[x][(listOfDates[x]).length - 1] / 7) + 1;
-    }
+    const tableBody = document.createElement('tbody'); // make table body
     
-    if (debugging3 === true) {
-        console.log(`num of rows: ${numOfRows}`)
-    }
+    let numOfRows = getNumOfRows(listOfDates); // find the number of rows needed for each calendar month
+
+    let counting = 0; // initialize counting variables
+    
+    
     // make table rows and columns
     for (var i = 0; i < numOfRows; i++) {
-        if (debugging3 === true) {
-            console.log(`ignore`)
-        }
+        
         const calendarRow = document.createElement('tr');
         if (i === 0) {
             for (var j = 0; j < 7; j++) {
@@ -159,6 +156,7 @@ for (var x = 0; x < monthsToShow; x++) {
                     // keep empty
                 } else if (j + 1 >= startInd) {
                     const cellText = document.createTextNode(listOfDates[x][counting]);
+                 
                     calendarCol.appendChild(cellText);
                     if (listOfDates[x][counting] === parseInt(today.slice(8, 10)) && monthsToDisplay[x] === today.slice(4,7)) {
                         calendarCol.classList;
@@ -177,17 +175,12 @@ for (var x = 0; x < monthsToShow; x++) {
                 
             }
         } else {
-            if (debugging === true) {
-                console.log(`this is counting ${counting}`)
-            }
+            
             for (var j = 0; j < 7; j++) {
                 const calendarCol = document.createElement('td');
                 calendarCol.classList;
                 calendarCol.classList.add('textCenter', 'cellDesign');
-
-                if (debugging2 === true) {
-                    console.log(`this is j ${j} and this is the current date ${listOfDates[x][counting]}`)
-                }
+                calendarCol.addEventListener('click', display);
 
 
                 if (counting < listOfDates[x][listOfDates[x].length - 1]) {
@@ -209,10 +202,6 @@ for (var x = 0; x < monthsToShow; x++) {
                 }
 
                 if (listOfDates[x][counting] === listOfDates[x][(listOfDates[x]).length - 1]) {
-                    if (debugging2 === true) {
-                        console.log(`last date: ${listOfDates[x][counting]}`)
-                        console.log(`this is j ${j}`)
-                    }
 
                     if (j === 6) {
                         newStartInd = 1;

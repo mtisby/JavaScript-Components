@@ -19,5 +19,30 @@
     </div>
 
     <script src="./calendar.js"></script>
+
+    <dialog id="popUp">
+        <form method="dialog">
+            <h1 id="selectedDate"></h1>
+            <label for="selectTime">Please Select a Time</label>
+            <select name="timeSelected" id="timeSelected">
+                <option value="timeTen">10am</option>
+                <option value="timeEleven">11am</option>
+                <option value="timeNoon">12pm</option>
+                <option value="timeOne">1pm</option>
+                <option value="timeTwo">2pm</option>
+                <option value="timeThree">3pm</option>
+                <option value="timeFour">4pm</option>
+                <option value="timeFive">5pm</option>
+                <option value="timeSix">6pm</option>
+                <option value="timeSeven">7pm</option>
+                <option value="timeEight">8pm</option>
+            </select>
+
+            <menu>
+                <button value="cancel">Cancel</button>
+                <button id="confirmBtn" value="default">Confirm</button>
+            </menu>
+        </form>
+    </dialog>
 </body>
 </html>
