@@ -12,6 +12,10 @@ html{
     --fontSix: 'Ubuntu', sans-serif;
 
     font-family: var(--fontOne);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 
@@ -68,16 +72,23 @@ html{
     border: 1px solid rgba(0, 0, 0, 0.05);
     border-radius: 1.5em;
     margin-top: 2.5em;
+    padding-bottom: .5em;
 }
 
 .dates{
     font-weight: none;
 }
 
+body{
+    max-width: 60em;
+}
+
 /*pop up*/
 .dialog{
     border: 2px solid rgba(0, 0, 0, 0.25);
     border-radius: 1em;
+    padding: 2em;
+    vertical-align: top;
 }
 
 /* interaction */
