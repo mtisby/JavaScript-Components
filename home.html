@@ -3,8 +3,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./calendar.css">
     <title>Calendar</title>
+
+    <!--links-->
+    <link rel="stylesheet" href="./calendar.css">
 
     <!--scripts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,10 +20,8 @@
 
     </div>
 
-    <script src="./calendar.js"></script>
-
-    <dialog id="popUp">
-        <form method="dialog">
+    <dialog id="popUp" class="dialog">
+        <form method="dialog" class="form">
             <h1 id="selectedDate"></h1>
             <label for="selectTime">Please Select a Time</label>
             <select name="timeSelected" id="timeSelected">
@@ -44,5 +44,7 @@
             </menu>
         </form>
     </dialog>
+
+    <script src="./calendar.js"></script>
 </body>
 </html>

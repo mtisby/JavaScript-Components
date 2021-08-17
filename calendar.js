@@ -11,6 +11,10 @@ const start = 1;
 const monthsToShow = 6;
 const count = 1;
 
+// select div container that will contain all displayed calendars
+const calendarsContainer = document.querySelector('#calendarContainer');
+const popUp = document.querySelector('#popUp');
+
 
 // quality check 
 // check if leap it is a Leap Year
@@ -85,19 +89,6 @@ function getNumOfRows(listOfDates) {
     return numOfRows
 }
 
-// function for pop-up modual 
-function display() {
-    if (typeof popUp.showModal === "function") {
-        popUp.showModal();
-      } else {
-        alert("The <dialog> API is not supported by this browser");
-      }
-}
-
-// select div container that will contain all displayed calendars
-const calendarsContainer = document.querySelector('#calendarContainer');
-const popUp = document.querySelector('#popUp');
-
 // call functions needed
 let startInd = startDate(today); // returns the starting date/index for the current month
 const monthsToDisplay= listOfMonths(); // get what months to display
@@ -123,6 +114,16 @@ for (var x = 0; x < monthsToShow; x++) {
     calendarTable.classList.add('textCenter');
     header.classList;
     header.classList.add('textCenter', 'calendarHeading');
+    const popUpHeader = document.querySelector('#selectedDate');
+    popUpHeader.innerText = `select a time for the ${undefined} of ${monthsToDisplay[x]}`;
+
+    calendarTable.addEventListener('click', function onOpen() {
+        if (typeof popUp.showModal === "function") {
+            popUp.showModal();
+        } else {
+          alert("The <dialog> API is not supported by this browser");
+        }
+      });
 
     const tableBody = document.createElement('tbody'); // make table body
     
