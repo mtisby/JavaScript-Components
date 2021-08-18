@@ -113,9 +113,7 @@ for (var x = 0; x < monthsToShow; x++) {
     calendarTable.classList;
     calendarTable.classList.add('textCenter');
     header.classList;
-    header.classList.add('textCenter', 'calendarHeading');
-
-    // figure out how to get td element with event listener
+    header.classList.add('textCenter', 'calendarHeading', 'month');
    
 
     calendarTable.addEventListener('click', function onOpen(e) {
@@ -124,7 +122,6 @@ for (var x = 0; x < monthsToShow; x++) {
         popUpHeader.classList;
         popUpHeader.classList.add('textCenter');
         const monthValue = e.path[4].querySelector('h1').innerText;
-        console.log(monthValue);
 
         popUpHeader.innerText = `${monthValue} ${value}`;
         if (typeof popUp.showModal === "function") {

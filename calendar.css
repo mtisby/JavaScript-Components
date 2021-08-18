@@ -3,7 +3,10 @@ html{
     --tdWidthFixed: 25px;
     --lightGrey: #a3a3a3;
     --todayColor: #434ff694;
+    --headerColor: #333cbe;
     --hoverColor: #747dff;
+    --monthTitleColor: #65cc95;
+    /* #eb71fb; */
     --fontOne: 'Heebo', sans-serif;
     --fontTwo: 'Noto Sans HK', sans-serif;
     --fontThree: 'Poppins', sans-serif;
@@ -25,7 +28,7 @@ html{
 
 .tableHead{
     padding: .5em;
-    color: var(--lightGrey);
+    color: var(--hoverColor);
     font-weight: bold;
 }
 
@@ -83,6 +86,13 @@ body{
     max-width: 60em;
 }
 
+.month{
+    color: var(--monthTitleColor);
+    font-family: var(--fontThree);
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
 /*pop up*/
 .dialog{
     border: 2px solid rgba(0, 0, 0, 0.25);
@@ -102,9 +112,15 @@ body{
 }
 
 .calendarDiv:hover{
-    box-shadow: 0 0 25px rgba(128, 128, 128, 0.50);
+    box-shadow: 0 0 25px rgba(128, 128, 128, 0.5);
 }
 
 .header{
     text-align: center;
+    font-size: 3em;
+    font-family: var(--fontThree);
+    color: var(--headerColor);
+
+    margin-bottom: 0;
+    padding-top: 1em ;
 }
