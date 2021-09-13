@@ -123,6 +123,9 @@ for (var x = 0; x < monthsToShow; x++) {
 
 
     calendarTable.addEventListener('click', function onOpen(e) {
+        const cell = e.target.closest('td');
+        if (!cell) { return; } // Quit, not clicked on a cell
+        if (Object.keys(daysOfWeekDict).includes(cell.innerText)) { return; } // Quit, not clicked on a cell
         const value = e.srcElement.innerText;
         const popUpHeader = document.querySelector('#selectedDate');
         popUpHeader.classList.add('textCenter');
@@ -212,7 +215,6 @@ for (var x = 0; x < monthsToShow; x++) {
                         calendarCol.classList;
                         calendarCol.classList.add('beforeToday');
                     } else {
-
                         calendarCol.classList.add('dates');
                     }
 
