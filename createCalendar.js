@@ -11,6 +11,8 @@ const start = 1;
 const monthsToShow = 2;
 const count = 1;
 
+console.log(today)
+
 // select div container that will contain all displayed calendars
 const calendarsContainer = document.querySelector('#calendarContainer');
 const popUp = document.querySelector('#popUp');
@@ -124,8 +126,14 @@ for (var x = 0; x < monthsToShow; x++) {
 
     calendarTable.addEventListener('click', function onOpen(e) {
         const cell = e.target.closest('td');
+
+        console.log(`e ${e.path[4].querySelector('h1').innerText}; ${typeof e.path[4].querySelector('h1').innerText}`)
+        console.log(`today ${today.slice(4,7)}; ${typeof today.slice(4,7)}`)
+        
         if (!cell) { return; } // Quit, not clicked on a cell
         if (Object.keys(daysOfWeekDict).includes(cell.innerText)) { return; } // Quit, not clicked on a cell
+        if ( e.path[4].querySelector('h1').innerText === today.slice(4,7) && parseInt(cell.innerText) < parseInt(today.slice(8,10))) { return; } // Quit, not clicked on a cell
+        
         const value = e.srcElement.innerText;
         const popUpHeader = document.querySelector('#selectedDate');
         popUpHeader.classList.add('textCenter');
