@@ -8,14 +8,14 @@ const daysOfWeek = [[1, "Sun"], [2, "Mon"], [3, "Tue"],  [4, "Wed"],  [5, "Thu"]
 const daysOfWeekDict = { Sun: 1, Mon: 2, Tue: 3, Wed: 4, Thu: 5, Fri: 6, Sat: 7};
 const today = Date();
 const start = 1;
-const monthsToShow = 2;
+const monthsToShow = 6;
 const count = 1;
 
 // select div container that will contain all displayed calendars
 const calendarsContainer = document.querySelector('#calendarContainer');
 const popUp = document.querySelector('#popUp');
 
-console.log(`today is the day ${today}`)
+
 // quality check 
 // check if leap it is a Leap Year
 if (parseInt(today.slice(12, 16), 10) % 4 === 0) {
@@ -45,9 +45,9 @@ function listOfMonths() {
                 for (var x = 0; x < monthsToShow; x++) {
                     if (monthsList[countInd + x] === undefined) {
                         countInd = 0;
-                        
+                        console.log(monthsToShow - (x + 1))
                         for (var restart = 0; restart < (monthsToShow - x); restart++) {
-                            
+                            console.log(restart);
                             monthsToDisplay.push(monthsList[restart]);
                         }
                         break
@@ -60,7 +60,7 @@ function listOfMonths() {
         } 
         countInd++;
     }
-   
+    console.log(monthsToDisplay)
     return monthsToDisplay;
 }
 // returns an nested array of all of the days within each 
@@ -105,21 +105,21 @@ for (var x = 0; x < monthsToShow; x++) {
 
     //make table
     const divCalendar = document.createElement('div');
+    divCalendar.classList;
     divCalendar.classList.add('calendarDiv');
-    const headerDiv = document.createElement('div');
-    const buttonLeft = document.createElement('button');
     const header = document.createElement('h1');
     header.innerText = monthsToDisplay[x];
-    const buttonRight = document.createElement('button');
     const calendarTable = document.createElement('table');
+    calendarTable.classList;
     calendarTable.classList.add('textCenter');
+    header.classList;
     header.classList.add('textCenter', 'calendarHeading', 'month');
-    headerDiv.classList.add('headerDiv');
    
 
     calendarTable.addEventListener('click', function onOpen(e) {
         const value = e.srcElement.innerText;
         const popUpHeader = document.querySelector('#selectedDate');
+        popUpHeader.classList;
         popUpHeader.classList.add('textCenter');
         const monthValue = e.path[4].querySelector('h1').innerText;
 
@@ -145,6 +145,7 @@ for (var x = 0; x < monthsToShow; x++) {
         if (i === 0) {
             for (var j = 0; j < 7; j++) {
                 const calendarCol = document.createElement('td');
+                calendarCol.classList;
                 calendarCol.classList.add('textCenter', 'cellDesign', 'tableHead');
 
 
@@ -153,44 +154,36 @@ for (var x = 0; x < monthsToShow; x++) {
                 calendarRow.appendChild(calendarCol);
             }
         } else if (i === 1) {
-            for (var j = 1; j < 8; j++) {
+            for (var j = 0; j < 7; j++) {
                 const calendarCol = document.createElement('td');
+                calendarCol.classList;
                 calendarCol.classList.add('textCenter', 'cellDesign');
-
-                // console.log(`counting ${counting}`);
-                // console.log(`start ${startInd}`);
-                // console.log(`j ${j}`);
-
 
                 if (j < startInd) {
                     // keep empty
-                } else if (j >= startInd) {
+                } else if (j + 1 >= startInd) {
                     const cellText = document.createTextNode(listOfDates[x][counting]);
-                    if (j === startInd) {
-                        console.log(`start ${startInd}, j ${j}`)
-                    } else {
-                        console.log('not me')
-                    }
-
+                 
                     calendarCol.appendChild(cellText);
-                    if (listOfDates[x][counting] === parseInt(today.slice(8, 10)) && monthsToDisplay[x] === today.slice(4, 7)) {
+                    if (listOfDates[x][counting] === parseInt(today.slice(8, 10)) && monthsToDisplay[x] === today.slice(4,7)) {
+                        calendarCol.classList;
                         calendarCol.classList.add('today');
                     } else if (listOfDates[x][counting] < parseInt(today.slice(8, 10)) && monthsToDisplay[x] === today.slice(4, 7)) {
+                        calendarCol.classList;
                         calendarCol.classList.add('beforeToday');
                     } else {
+                        calendarCol.classList;
                         calendarCol.classList.add('dates');
                     }
 
                     counting++
-                } else if (j === startInd) {
-                    console.log("hey")
                 }
                 calendarRow.appendChild(calendarCol);
                 
             }
         } else {
             
-            for (var j = 1; j < 8; j++) {
+            for (var j = 0; j < 7; j++) {
                 const calendarCol = document.createElement('td');
                 calendarCol.classList;
                 calendarCol.classList.add('textCenter', 'cellDesign');
@@ -207,7 +200,7 @@ for (var x = 0; x < monthsToShow; x++) {
                         calendarCol.classList;
                         calendarCol.classList.add('beforeToday');
                     } else {
-
+                        calendarCol.classList;
                         calendarCol.classList.add('dates');
                     }
 
@@ -234,10 +227,7 @@ for (var x = 0; x < monthsToShow; x++) {
         
     }
     calendarTable.appendChild(tableBody);
-    headerDiv.appendChild(buttonLeft);
-    headerDiv.appendChild(header);
-    headerDiv.appendChild(buttonRight);
-    divCalendar.appendChild(headerDiv);
+    divCalendar.appendChild(header);
     divCalendar.append(calendarTable);
     calendarsContainer.appendChild(divCalendar);
     
