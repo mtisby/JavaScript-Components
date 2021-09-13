@@ -245,3 +245,4 @@ for (var x = 0; x < monthsToShow; x++) {
 };
 
 
+//formating arrow buttons
