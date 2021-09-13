@@ -99,9 +99,6 @@ let newStartInd = 0;
 
 // make calendar js objects
 for (var x = 0; x < monthsToShow; x++) {
-    if (x > 0) {
-        startInd = newStartInd;
-    }
 
     //make table
     const divCalendar = document.createElement('div');
@@ -116,6 +113,14 @@ for (var x = 0; x < monthsToShow; x++) {
     header.classList.add('textCenter', 'calendarHeading', 'month');
     headerDiv.classList.add('headerDiv');
    
+    if (x > 0) {
+        startInd = newStartInd;
+        divCalendar.classList.add("hide");
+    } else if (x === 0) {
+        buttonLeft.classList.add("visualhide");
+    }
+
+
 
     calendarTable.addEventListener('click', function onOpen(e) {
         const value = e.srcElement.innerText;

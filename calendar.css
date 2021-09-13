@@ -131,3 +131,16 @@ body{
     justify-content: space-evenly;
     align-items: center;
 }
+
+.headerDivFirst{
+    display: flex;
+    justify-content: center;
+}
+
+.hide{
+    display: none;
+}
+
+.visualhide{
+    opacity: 0;
+}
