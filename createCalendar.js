@@ -107,9 +107,11 @@ for (var x = 0; x < monthsToShow; x++) {
     divCalendar.classList.add('calendarDiv');
     const headerDiv = document.createElement('div');
     const buttonLeft = document.createElement('button');
+    buttonLeft.id = "buttonLeft"
     const header = document.createElement('h1');
     header.innerText = monthsToDisplay[x];
     const buttonRight = document.createElement('button');
+    buttonRight.id = "buttonRight"
     const calendarTable = document.createElement('table');
     calendarTable.classList.add('textCenter');
     header.classList.add('textCenter', 'calendarHeading', 'month');
@@ -261,3 +263,14 @@ for (var x = 0; x < monthsToShow; x++) {
 
 
 //formating arrow buttons
+const buttonLeft = document.querySelector("#buttonLeft");
+const buttonRight = document.querySelector("#buttonRight");
+
+function arrowButtons(e) {
+    // based on which is clicked hide previous version and show 
+    // current version
+    console.log(e)
+
+}
+
+buttonRight.addEventListener('click', arrowButtons);
