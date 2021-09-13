@@ -144,3 +144,9 @@ body{
 .visualhide{
     opacity: 0;
 }
+
+.buttonRight .buttonLeft{
+    background-color: none;
+    border: 2.5px solid black;
+    border-radius: 50%;
+}

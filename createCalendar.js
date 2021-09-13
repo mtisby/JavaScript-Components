@@ -107,10 +107,12 @@ for (var x = 0; x < monthsToShow; x++) {
     divCalendar.classList.add('calendarDiv');
     const headerDiv = document.createElement('div');
     const buttonLeft = document.createElement('button');
+    buttonLeft.classList.add('buttonLeft');
     buttonLeft.id = "buttonLeft"
     const header = document.createElement('h1');
     header.innerText = monthsToDisplay[x];
     const buttonRight = document.createElement('button');
+    buttonRight.classList.add('buttonRight');
     buttonRight.id = "buttonRight"
     const calendarTable = document.createElement('table');
     calendarTable.classList.add('textCenter');
@@ -269,7 +271,9 @@ const buttonRight = document.querySelector("#buttonRight");
 function arrowButtons(e) {
     // based on which is clicked hide previous version and show 
     // current version
-    console.log(e.path[1].classList[0])
+    const caldiv = document.querySelector(e.path[1].classList[0]);
+    caldiv.classList.toggle("hide");
+    
 
 
 }
