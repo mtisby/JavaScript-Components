@@ -269,7 +269,8 @@ const buttonRight = document.querySelector("#buttonRight");
 function arrowButtons(e) {
     // based on which is clicked hide previous version and show 
     // current version
-    console.log(e)
+    console.log(e.path[1].classList[0])
+
 
 }
 
