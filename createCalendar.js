@@ -267,27 +267,55 @@ for (var x = 0; x < monthsToShow; x++) {
 
 
 //formating arrow buttons
-const buttonLeft = document.querySelector("#buttonLeft");
-const buttonRight = document.querySelector("#buttonRight");
-const month = document.getElementById(`montha`)
-console.log(month)
+let buttonLeft = document.querySelector("#buttonLeft");
+let buttonRight = document.querySelector("#buttonRight");
 
 function arrowButtons(e) {
     // based on which is clicked hide previous version and show 
     // current version
     console.log(e.path)
+    let thisMonth = '';
+
     for (var x of e.path) {
         try {
             if (x.id.includes('month')) {
-                console.log(x.id)
+                const currentMonthInd = alphabet.indexOf(x.id.slice(-1));
+                const nextMonthId = `month${alphabet[currentMonthInd + 1]}`;
+                const lastMonthId = `month${alphabet[currentMonthInd - 1]}`;
+                thisMonth = document.getElementById(x.id);
+
+                if (e.path[0].id.includes('Right')) {
+                    console.log('right?')
+                    thisMonth.classList.add('hide');
+                    const nextMonth = document.getElementById(nextMonthId);
+                    nextMonth.classList.remove('hide');
+
+                    thisMonth = nextMonth;
+                    
+                } else if (e.path[0].id.includes('Left')) {
+                    console.log('left?')
+                    thisMonth.classList.add('hide');
+                    const lastMonth = document.getElementById(lastMonthId);
+                    lastMonth.classList.remove('hide');
+
+                    thisMonth = lastMonth
+                }
             }
+
         } catch (error) {
             console.log("some error")
         }
+        
+            // buttonLeft = document.querySelector("#buttonLeft");
+            // buttonRight = document.querySelector(``);
+
     }
     
+    buttonLeft = document.querySelector("thisMonth.id > #buttonLeft");
+    buttonRight = document.querySelector("thisMonth.id > #buttonRight");
 
-
+    return thisMonth
 }
 
-buttonRight.addEventListener('click', arrowButtons);
+buttonRight.addEventListener('click',  function (e) { const y = arrowButtons(e) });
+buttonLeft.addEventListener('click', function (e) { const y = arrowButtons(e) });
