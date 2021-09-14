@@ -266,9 +266,9 @@ for (var x = 0; x < monthsToShow; x++) {
 };
 
 
-//formating arrow buttons
-let buttonLeft = document.querySelector("#buttonLeft");
-let buttonRight = document.querySelector("#buttonRight");
+// //formating arrow buttons
+// let buttonLeft = document.querySelector("#buttonLeft");
+// let buttonRight = document.querySelector("#buttonRight");
 
 function arrowButtons(e) {
     // based on which is clicked hide previous version and show 
@@ -311,11 +311,19 @@ function arrowButtons(e) {
 
     }
     
-    buttonLeft = document.querySelector("thisMonth.id > #buttonLeft");
-    buttonRight = document.querySelector("thisMonth.id > #buttonRight");
+    // buttonLeft = document.querySelector("thisMonth.id > #buttonLeft");
+    // buttonRight = document.querySelector("thisMonth.id > #buttonRight");
 
     return thisMonth
 }
 
-buttonRight.addEventListener('click',  function (e) { const y = arrowButtons(e) });
-buttonLeft.addEventListener('click', function (e) { const y = arrowButtons(e) });
+// buttonRight.addEventListener('click',  function (e) { const y = arrowButtons(e) });
+// buttonLeft.addEventListener('click', function (e) { const y = arrowButtons(e) });
+
+const f = 0;
+while (f < 5) {
+    buttonLeft = document.querySelector("thisMonth.id > #buttonLeft");
+    buttonRight = document.querySelector("thisMonth.id > #buttonRight");
+    buttonRight.addEventListener('click',  function (e) { const y = arrowButtons(e) });
+    buttonLeft.addEventListener('click', function (e) { const y = arrowButtons(e) });
+}
