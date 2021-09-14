@@ -276,6 +276,15 @@ function arrowButtons(e) {
     // based on which is clicked hide previous version and show 
     // current version
     console.log(e.path)
+    for (var x of e.path) {
+        try {
+            if (x.id.includes('month')) {
+                console.log(x.id)
+            }
+        } catch (error) {
+            console.log("some error")
+        }
+    }
     
 
 
