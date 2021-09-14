@@ -145,7 +145,7 @@ body{
     opacity: 0;
 }
 
-.buttonRight .buttonLeft{
+#buttonRight #buttonLeft{
     background-color: none;
     border: 2.5px solid black;
     border-radius: 50%;

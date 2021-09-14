@@ -266,9 +266,18 @@ for (var x = 0; x < monthsToShow; x++) {
 };
 
 
-// //formating arrow buttons
-// let buttonLeft = document.querySelector("#buttonLeft");
-// let buttonRight = document.querySelector("#buttonRight");
+//formating arrow buttons
+const buttonsLeft = document.querySelectorAll("#buttonLeft");
+const buttonsRight = document.querySelectorAll("#buttonRight");
+
+for (var button of buttonsLeft) {
+    button.addEventListener('click', arrowButtons);
+    
+}
+for (var button of buttonsRight) {
+    button.addEventListener('click', arrowButtons);
+    
+}
 
 function arrowButtons(e) {
     // based on which is clicked hide previous version and show 
@@ -314,16 +323,4 @@ function arrowButtons(e) {
     // buttonLeft = document.querySelector("thisMonth.id > #buttonLeft");
     // buttonRight = document.querySelector("thisMonth.id > #buttonRight");
 
-    return thisMonth
-}
-
-// buttonRight.addEventListener('click',  function (e) { const y = arrowButtons(e) });
-// buttonLeft.addEventListener('click', function (e) { const y = arrowButtons(e) });
-
-const f = 0;
-while (f < 5) {
-    buttonLeft = document.querySelector("thisMonth.id > #buttonLeft");
-    buttonRight = document.querySelector("thisMonth.id > #buttonRight");
-    buttonRight.addEventListener('click',  function (e) { const y = arrowButtons(e) });
-    buttonLeft.addEventListener('click', function (e) { const y = arrowButtons(e) });
 }
