@@ -5,7 +5,8 @@ const months = {
 };
 const monthsList = Object.keys(months);
 const daysOfWeek = [[1, "Sun"], [2, "Mon"], [3, "Tue"],  [4, "Wed"],  [5, "Thu"],  [6, "Fri"],  [7, "Sat"] ]
-const daysOfWeekDict = { Sun: 1, Mon: 2, Tue: 3, Wed: 4, Thu: 5, Fri: 6, Sat: 7};
+const daysOfWeekDict = { Sun: 1, Mon: 2, Tue: 3, Wed: 4, Thu: 5, Fri: 6, Sat: 7 };
+const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('')
 const today = Date();
 const start = 1;
 const monthsToShow = 2;
@@ -105,6 +106,7 @@ for (var x = 0; x < monthsToShow; x++) {
     //make table
     const divCalendar = document.createElement('div');
     divCalendar.classList.add('calendarDiv');
+    divCalendar.id = `month${alphabet[x]}`;
     const headerDiv = document.createElement('div');
     const buttonLeft = document.createElement('button');
     buttonLeft.classList.add('buttonLeft');
@@ -267,13 +269,13 @@ for (var x = 0; x < monthsToShow; x++) {
 //formating arrow buttons
 const buttonLeft = document.querySelector("#buttonLeft");
 const buttonRight = document.querySelector("#buttonRight");
+const month = document.getElementById(`montha`)
+console.log(month)
 
 function arrowButtons(e) {
     // based on which is clicked hide previous version and show 
     // current version
-    console.log(e.path[1])
-    const caldiv = document.querySelector('.calendarDiv');
-    caldiv.classList.toggle("hide");
+    console.log(e.path)
     
 
 
