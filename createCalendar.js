@@ -271,7 +271,8 @@ const buttonRight = document.querySelector("#buttonRight");
 function arrowButtons(e) {
     // based on which is clicked hide previous version and show 
     // current version
-    const caldiv = document.querySelector(e.path[1].classList[0]);
+    console.log(e.path[1])
+    const caldiv = document.querySelector('.calendarDiv');
     caldiv.classList.toggle("hide");
     
 
