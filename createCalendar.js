@@ -110,22 +110,27 @@ for (var x = 0; x < monthsToShow; x++) {
     const headerDiv = document.createElement('div');
     const buttonLeft = document.createElement('button');
     buttonLeft.classList.add('buttonLeft');
-    buttonLeft.id = "buttonLeft"
+    buttonLeft.innerHTML = "<"
+    buttonLeft.id = "buttonLeft";
     const header = document.createElement('h1');
     header.innerText = monthsToDisplay[x];
     const buttonRight = document.createElement('button');
     buttonRight.classList.add('buttonRight');
+    buttonRight.innerHTML = ">"
     buttonRight.id = "buttonRight"
     const calendarTable = document.createElement('table');
     calendarTable.classList.add('textCenter');
     header.classList.add('textCenter', 'calendarHeading', 'month');
     headerDiv.classList.add('headerDiv');
    
-    if (x > 0) {
+    if (x > 0 && x != (monthsToShow-1)) {
         startInd = newStartInd;
         divCalendar.classList.add("hide");
     } else if (x === 0) {
         buttonLeft.classList.add("visualhide");
+    } else if (x === monthsToShow - 1) {
+        buttonRight.classList.add("visualhide");
+        divCalendar.classList.add("hide");
     }
 
 
@@ -271,6 +276,7 @@ const buttonsLeft = document.querySelectorAll("#buttonLeft");
 const buttonsRight = document.querySelectorAll("#buttonRight");
 
 for (var button of buttonsLeft) {
+    console.log(`I am left ${button.id}`)
     button.addEventListener('click', arrowButtons);
     
 }
@@ -294,20 +300,30 @@ function arrowButtons(e) {
                 thisMonth = document.getElementById(x.id);
 
                 if (e.path[0].id.includes('Right')) {
-                    console.log('right?')
-                    thisMonth.classList.add('hide');
-                    const nextMonth = document.getElementById(nextMonthId);
-                    nextMonth.classList.remove('hide');
 
-                    thisMonth = nextMonth;
+                    if (x.id === `month${alphabet[monthsToShow - 1]}`) {
+                        //
+                    } else {
+                        console.log('right?')
+                        thisMonth.classList.add('hide');
+                        const nextMonth = document.getElementById(nextMonthId);
+                        nextMonth.classList.remove('hide');
+
+                        thisMonth = nextMonth;
+                    }
                     
                 } else if (e.path[0].id.includes('Left')) {
-                    console.log('left?')
-                    thisMonth.classList.add('hide');
-                    const lastMonth = document.getElementById(lastMonthId);
-                    lastMonth.classList.remove('hide');
 
-                    thisMonth = lastMonth
+                    if (x.id === `month${alphabet[0]}`) {
+                        //
+                    } else {
+                        console.log('left?')
+                        thisMonth.classList.add('hide');
+                        const lastMonth = document.getElementById(lastMonthId);
+                        lastMonth.classList.remove('hide');
+
+                        thisMonth = lastMonth
+                    }
                 }
             }
 
