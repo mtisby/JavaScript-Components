@@ -89,46 +89,41 @@ function getNumOfRows(listOfDates) {
     return numOfRows
 }
 
-function makeCols (i, calendarRow, counting) {
+function makeCols (i, calendarRow, counting, startInd) {
     for (var j = 0; j < 7; j++) {
         const calendarCol = document.createElement('td');
         calendarCol.classList.add('textCenter', 'cellDesign');
 
-
-        if (i == 1 && j < startInd) {
-            // keep empty
-        } else if ((i == 1 && j >= startInd) || i > 1) {
-            if (listOfDates[x][counting] === undefined) {
-                //
-            } else {
-                const cellText = document.createTextNode(listOfDates[x][counting]);
-                calendarCol.appendChild(cellText);
-
-                if (listOfDates[x][counting] === parseInt(today.slice(8, 10)) && monthsToDisplay[x] === today.slice(4, 7)) {
-                    calendarCol.classList.add('today');
-                } else if (listOfDates[x][counting] < parseInt(today.slice(8, 10)) && monthsToDisplay[x] === today.slice(4, 7)) {
-                    calendarCol.classList.add('beforeToday');
-                } else {
-                    calendarCol.classList.add('dates');
-                }
-
-                counting++
-            }
-        } else if (j === startInd) {
+        if (i === 1 && j < startInd) {
             //
+        } else if ((i===1 && j>=startInd)||(i > 1 && (counting < listOfDates[x][listOfDates[x].length - 1]))) {
+            const cellText = document.createTextNode(listOfDates[x][counting]);
+            calendarCol.appendChild(cellText);
+
+            if (listOfDates[x][counting] === parseInt(today.slice(8, 10)) && monthsToDisplay[x] === today.slice(4, 7)) {
+                calendarCol.classList;
+                calendarCol.classList.add('today');
+            } else if (listOfDates[x][counting] < parseInt(today.slice(8, 10)) && monthsToDisplay[x] === today.slice(4, 7)) {
+                calendarCol.classList;
+                calendarCol.classList.add('beforeToday');
+            } else {
+                calendarCol.classList.add('dates');
+            }
+
+            counting++
         }
 
         if (i > 1 && (listOfDates[x][counting] === listOfDates[x][(listOfDates[x]).length - 1])) {
+
             if (j === 6) {
                 startInd = 1;
             } else {
                 startInd = j + 2;
             }
         }
-        
+
         calendarRow.appendChild(calendarCol);
     }
-
     console.log(`starting ${startInd}`)
     return startInd, counting
 }
