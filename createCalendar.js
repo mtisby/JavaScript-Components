@@ -9,7 +9,7 @@ const daysOfWeekDict = { Sun: 1, Mon: 2, Tue: 3, Wed: 4, Thu: 5, Fri: 6, Sat: 7 
 const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('')
 const today = Date();
 const start = 1;
-const monthsToShow = 2;
+const monthsToShow = 3;
 const count = 1;
 
 // select div container that will contain all displayed calendars
@@ -80,11 +80,15 @@ function listDates(monthsToDisplay) {
 function getNumOfRows(listOfDates) {
     let numOfRows = 0;
     if (startInd >= 5) {
+        console.log('here, this is firest ')
         numOfRows = Math.ceil(listOfDates[x][(listOfDates[x]).length - 1] / 7) + 2;
+        console.log(listOfDates[x][(listOfDates[x]).length - 1])
+        console.log(numOfRows, startInd)
     } else if (monthsToDisplay[x] === 'Feb' && startInd != 1) {
         numOfRows = Math.ceil(listOfDates[x][(listOfDates[x]).length - 1] / 7) + 2;
     }else {
         numOfRows = Math.ceil(listOfDates[x][(listOfDates[x]).length - 1] / 7) + 1;
+        console.log('here, this is last ')
     }
     return numOfRows
 }
@@ -113,7 +117,7 @@ function makeCols (i, calendarRow, counting, startInd) {
             counting++
         }
 
-        if (i > 1 && (listOfDates[x][counting] === listOfDates[x][(listOfDates[x]).length - 1])) {
+        if ((i > 1) && (listOfDates[x][counting] === listOfDates[x][(listOfDates[x]).length - 1])) {
 
             if (j === 6) {
                 startInd = 1;
@@ -195,6 +199,10 @@ for (var x = 0; x < monthsToShow; x++) {
     const tableBody = document.createElement('tbody'); // make table body
     let numOfRows = getNumOfRows(listOfDates); // find the number of rows needed for each calendar month
     let counting = 0; // initialize counting variables
+
+    if (x === 2) {
+        console.log(numOfRows)
+    }
     
     
     // make table rows and columns
@@ -213,7 +221,9 @@ for (var x = 0; x < monthsToShow; x++) {
             indices = makeCols(i, calendarRow, counting, startInd);
             newStartInd = indices[0];
             counting = indices[1];
-            console.log(`recieved ${newStartInd}`)
+            if (x === 1) {
+                console.log(`recieved ${newStartInd}`)
+            }
         }
 
         
