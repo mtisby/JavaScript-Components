@@ -92,7 +92,7 @@ function getNumOfRows(listOfDates) {
     return numOfRows
 }
 
-function makeCols(i, calendarRow) {
+function makeCols (i, calendarRow, counting) {
     for (var j = 0; j < 7; j++) {
         const calendarCol = document.createElement('td');
         calendarCol.classList.add('textCenter', 'cellDesign');
@@ -129,7 +129,7 @@ function makeCols(i, calendarRow) {
         calendarRow.appendChild(calendarCol);
     }
 
-    return startInd
+    return startInd, counting
 }
 
 // call functions needed
@@ -218,7 +218,7 @@ for (var x = 0; x < monthsToShow; x++) {
                 calendarRow.appendChild(calendarCol);
             }
         } else {
-            startInd = makeCols(i, calendarRow);
+            startInd, counting = makeCols(i, calendarRow, counting);
         }
 
         
