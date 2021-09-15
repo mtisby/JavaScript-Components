@@ -124,8 +124,8 @@ function makeCols (i, calendarRow, counting, startInd) {
 
         calendarRow.appendChild(calendarCol);
     }
-    console.log(`starting ${startInd}`)
-    return startInd, counting
+    console.log(`function ${startInd}`)
+    return [startInd, counting]
 }
 
 // call functions needed
@@ -161,6 +161,7 @@ for (var x = 0; x < monthsToShow; x++) {
    
     if (x > 0 && x != (monthsToShow - 1)) {
         startInd = newStartInd;
+        console.log(`starting ${startInd}`)
         divCalendar.classList.add("hide");
     } else if (x === 0) {
         buttonLeft.classList.add("visualhide");
@@ -209,7 +210,10 @@ for (var x = 0; x < monthsToShow; x++) {
                 calendarRow.appendChild(calendarCol);
             }
         } else {
-            newStartInd, counting = makeCols(i, calendarRow, counting, startInd);
+            indices = makeCols(i, calendarRow, counting, startInd);
+            newStartInd = indices[0];
+            counting = indices[1];
+            console.log(`recieved ${newStartInd}`)
         }
 
         
