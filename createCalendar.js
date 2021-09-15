@@ -159,7 +159,7 @@ for (var x = 0; x < monthsToShow; x++) {
     header.classList.add('textCenter', 'calendarHeading', 'month');
     headerDiv.classList.add('headerDiv');
    
-    if (x > 0 && x != (monthsToShow-1)) {
+    if (x > 0 && x != (monthsToShow - 1)) {
         startInd = newStartInd;
         divCalendar.classList.add("hide");
     } else if (x === 0) {
@@ -192,9 +192,7 @@ for (var x = 0; x < monthsToShow; x++) {
       });
 
     const tableBody = document.createElement('tbody'); // make table body
-    
     let numOfRows = getNumOfRows(listOfDates); // find the number of rows needed for each calendar month
-
     let counting = 0; // initialize counting variables
     
     
@@ -211,7 +209,7 @@ for (var x = 0; x < monthsToShow; x++) {
                 calendarRow.appendChild(calendarCol);
             }
         } else {
-            startInd, counting = makeCols(i, calendarRow, counting);
+            newStartInd, counting = makeCols(i, calendarRow, counting, startInd);
         }
 
         
