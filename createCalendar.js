@@ -9,7 +9,7 @@ const daysOfWeekDict = { Sun: 1, Mon: 2, Tue: 3, Wed: 4, Thu: 5, Fri: 6, Sat: 7 
 const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('')
 const today = Date();
 const start = 1;
-const monthsToShow = 3;
+const monthsToShow = 2;
 const count = 1;
 
 // select div container that will contain all displayed calendars
