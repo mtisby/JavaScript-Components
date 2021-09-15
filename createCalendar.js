@@ -180,7 +180,7 @@ for (var x = 0; x < monthsToShow; x++) {
                 calendarRow.appendChild(calendarCol);
             }
         } else if (i === 1) {
-            for (var j = 1; j < 8; j++) {
+            for (var j = 0; j < 7; j++) {
                 const calendarCol = document.createElement('td');
                 calendarCol.classList.add('textCenter', 'cellDesign');
 
@@ -217,7 +217,7 @@ for (var x = 0; x < monthsToShow; x++) {
             }
         } else {
             
-            for (var j = 1; j < 8; j++) {
+            for (var j = 0; j < 7; j++) {
                 const calendarCol = document.createElement('td');
                 calendarCol.classList;
                 calendarCol.classList.add('textCenter', 'cellDesign');
