@@ -112,23 +112,24 @@ function makeCols (i, calendarRow, counting) {
                     calendarCol.classList.add('dates');
                 }
 
-                if (i > 1 && (listOfDates[x][counting] === listOfDates[x][(listOfDates[x]).length - 1])) {
-                    if (j === 6) {
-                        startInd = 1;
-                    } else {
-                        startInd = j + 2;
-                    }
-                }
-
-
                 counting++
             }
         } else if (j === startInd) {
             //
         }
+
+        if (i > 1 && (listOfDates[x][counting] === listOfDates[x][(listOfDates[x]).length - 1])) {
+            if (j === 6) {
+                startInd = 1;
+            } else {
+                startInd = j + 2;
+            }
+        }
+        
         calendarRow.appendChild(calendarCol);
     }
 
+    console.log(`starting ${startInd}`)
     return startInd, counting
 }
 
