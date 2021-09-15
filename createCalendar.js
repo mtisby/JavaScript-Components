@@ -92,6 +92,10 @@ function getNumOfRows(listOfDates) {
     return numOfRows
 }
 
+function makeCols() {
+    
+}
+
 // call functions needed
 let startInd = startDate(today); // returns the starting date/index for the current month
 const monthsToDisplay= listOfMonths(); // get what months to display
@@ -173,8 +177,6 @@ for (var x = 0; x < monthsToShow; x++) {
             for (var j = 0; j < 7; j++) {
                 const calendarCol = document.createElement('td');
                 calendarCol.classList.add('textCenter', 'cellDesign', 'tableHead');
-
-
                 const cellText = document.createTextNode(daysOfWeek[j][1]);
                 calendarCol.appendChild(cellText);
                 calendarRow.appendChild(calendarCol);
@@ -183,10 +185,6 @@ for (var x = 0; x < monthsToShow; x++) {
             for (var j = 0; j < 7; j++) {
                 const calendarCol = document.createElement('td');
                 calendarCol.classList.add('textCenter', 'cellDesign');
-
-                // console.log(`counting ${counting}`);
-                // console.log(`start ${startInd}`);
-                // console.log(`j ${j}`);
 
 
                 if (j < startInd) {
