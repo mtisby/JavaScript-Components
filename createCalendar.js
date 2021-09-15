@@ -12,13 +12,10 @@ const start = 1;
 const monthsToShow = 3;
 const count = 1;
 
-console.log(today)
-
 // select div container that will contain all displayed calendars
 const calendarsContainer = document.querySelector('#calendarContainer');
 const popUp = document.querySelector('#popUp');
 
-console.log(`today is the day ${today}`)
 // quality check 
 // check if leap it is a Leap Year
 if (parseInt(today.slice(12, 16), 10) % 4 === 0) {
@@ -101,28 +98,31 @@ function makeCols (i, calendarRow, counting) {
         if (i == 1 && j < startInd) {
             // keep empty
         } else if ((i == 1 && j >= startInd) || i > 1) {
-            const cellText = document.createTextNode(listOfDates[x][counting]);
-
-            calendarCol.appendChild(cellText);
-            if (listOfDates[x][counting] === parseInt(today.slice(8, 10)) && monthsToDisplay[x] === today.slice(4, 7)) {
-                calendarCol.classList.add('today');
-            } else if (listOfDates[x][counting] < parseInt(today.slice(8, 10)) && monthsToDisplay[x] === today.slice(4, 7)) {
-                calendarCol.classList.add('beforeToday');
+            if (listOfDates[x][counting] === undefined) {
+                //
             } else {
-                calendarCol.classList.add('dates');
-            }
+                const cellText = document.createTextNode(listOfDates[x][counting]);
+                calendarCol.appendChild(cellText);
 
-            if (i > 1 && (listOfDates[x][counting] === listOfDates[x][(listOfDates[x]).length - 1])) {
-
-                if (j === 6) {
-                    startInd = 1;
+                if (listOfDates[x][counting] === parseInt(today.slice(8, 10)) && monthsToDisplay[x] === today.slice(4, 7)) {
+                    calendarCol.classList.add('today');
+                } else if (listOfDates[x][counting] < parseInt(today.slice(8, 10)) && monthsToDisplay[x] === today.slice(4, 7)) {
+                    calendarCol.classList.add('beforeToday');
                 } else {
-                    startInd = j + 2;
+                    calendarCol.classList.add('dates');
                 }
+
+                if (i > 1 && (listOfDates[x][counting] === listOfDates[x][(listOfDates[x]).length - 1])) {
+                    if (j === 6) {
+                        startInd = 1;
+                    } else {
+                        startInd = j + 2;
+                    }
+                }
+
+
+                counting++
             }
-
-
-            counting++
         } else if (j === startInd) {
             //
         }
@@ -177,10 +177,7 @@ for (var x = 0; x < monthsToShow; x++) {
 
     calendarTable.addEventListener('click', function onOpen(e) {
         const cell = e.target.closest('td');
-
-        console.log(`e ${e.path[4].querySelector('h1').innerText}; ${typeof e.path[4].querySelector('h1').innerText}`)
-        console.log(`today ${today.slice(4,7)}; ${typeof today.slice(4,7)}`)
-        
+ 
         if (!cell) { return; } // Quit, not clicked on a cell
         if (Object.keys(daysOfWeekDict).includes(cell.innerText)) { return; } // Quit, not clicked on a cell
         if ( e.path[4].querySelector('h1').innerText === today.slice(4,7) && parseInt(cell.innerText) < parseInt(today.slice(8,10))) { return; } // Quit, not clicked on a cell
@@ -242,7 +239,6 @@ const buttonsLeft = document.querySelectorAll("#buttonLeft");
 const buttonsRight = document.querySelectorAll("#buttonRight");
 
 for (var button of buttonsLeft) {
-    console.log(`I am left ${button.id}`)
     button.addEventListener('click', arrowButtons);
     
 }
@@ -254,7 +250,6 @@ for (var button of buttonsRight) {
 function arrowButtons(e) {
     // based on which is clicked hide previous version and show 
     // current version
-    console.log(e.path)
     let thisMonth = '';
 
     for (var x of e.path) {
@@ -270,7 +265,6 @@ function arrowButtons(e) {
                     if (x.id === `month${alphabet[monthsToShow - 1]}`) {
                         //
                     } else {
-                        console.log('right?')
                         thisMonth.classList.add('hide');
                         const nextMonth = document.getElementById(nextMonthId);
                         nextMonth.classList.remove('hide');
@@ -283,7 +277,6 @@ function arrowButtons(e) {
                     if (x.id === `month${alphabet[0]}`) {
                         //
                     } else {
-                        console.log('left?')
                         thisMonth.classList.add('hide');
                         const lastMonth = document.getElementById(lastMonthId);
                         lastMonth.classList.remove('hide');
@@ -294,7 +287,7 @@ function arrowButtons(e) {
             }
 
         } catch (error) {
-            console.log("some error")
+           //
         }
         
             // buttonLeft = document.querySelector("#buttonLeft");
