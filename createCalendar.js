@@ -77,7 +77,7 @@ function listDates(monthsToDisplay) {
     return listOfDates;
 }
 
-function getNumOfRows(listOfDates) {
+function getNumOfRows(listOfDates, x) {
     let numOfRows = 0;
     if (startInd >= 5) {
         console.log('here, this is firest ')
@@ -197,7 +197,7 @@ for (var x = 0; x < monthsToShow; x++) {
       });
 
     const tableBody = document.createElement('tbody'); // make table body
-    let numOfRows = getNumOfRows(listOfDates); // find the number of rows needed for each calendar month
+    let numOfRows = getNumOfRows(listOfDates, x); // find the number of rows needed for each calendar month
     let counting = 0; // initialize counting variables
 
     if (x === 2) {
