@@ -80,14 +80,16 @@ function listDates(monthsToDisplay) {
 function getNumOfRows(listOfDates, x) {
     let numOfRows = 0;
     if (startInd >= 5) {
-        numOfRows = Math.ceil(listOfDates[x][(listOfDates[x]).length - 1] / 7) + 2;
+        //console.log(`greater than or equal to 5`)
+        numOfRows = Math.ceil(listOfDates[x][(listOfDates[x]).length - 1] / 7) + 1;
     } else if (monthsToDisplay[x] === 'Feb' && startInd != 1) {
         numOfRows = Math.ceil(listOfDates[x][(listOfDates[x]).length - 1] / 7) + 2;
     }else {
         numOfRows = Math.ceil(listOfDates[x][(listOfDates[x]).length - 1] / 7) + 1;
+        //console.log(`less than 5`)
     }
 
-    console.log(`x: ${x}, num of rows: ${numOfRows}`)
+    //console.log(`x: ${x}, num of rows: ${numOfRows}`)
     return numOfRows
 }
 
