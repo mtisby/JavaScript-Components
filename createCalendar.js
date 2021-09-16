@@ -9,8 +9,10 @@ const daysOfWeekDict = { Sun: 1, Mon: 2, Tue: 3, Wed: 4, Thu: 5, Fri: 6, Sat: 7 
 const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('')
 const today = Date();
 const start = 1;
-const monthsToShow = 3;
+const monthsToShow = 4;
 const count = 1;
+
+const debugging = true;
 
 // select div container that will contain all displayed calendars
 const calendarsContainer = document.querySelector('#calendarContainer');
@@ -86,7 +88,6 @@ function getNumOfRows(listOfDates, x) {
     }else {
         numOfRows = Math.ceil(listOfDates[x][(listOfDates[x]).length - 1] / 7) + 1;
     }
-
     return numOfRows
 }
 
@@ -99,7 +100,7 @@ function makeCols(i, calendarRow, counting, startInd) {
 
         if (i === 1 && j < startInd) {
             //
-        } else if ((i===1 && j>=startInd)||(i > 1 && (counting < listOfDates[x][listOfDates[x].length - 1]))) {
+        } else if ((i === 1 && j >= startInd) || (i > 1 && (counting < listOfDates[x][listOfDates[x].length - 1]))) {
             const cellText = document.createTextNode(listOfDates[x][counting]);
             calendarCol.appendChild(cellText);
 
@@ -114,6 +115,9 @@ function makeCols(i, calendarRow, counting, startInd) {
             }
 
             counting++
+        } else {
+            const cellText = document.createTextNode('empty');
+            calendarCol.appendChild(cellText);
         }
 
         if ((i > 1) && (listOfDates[x][counting] === listOfDates[x][(listOfDates[x]).length - 1])) {
@@ -123,13 +127,12 @@ function makeCols(i, calendarRow, counting, startInd) {
             } else {
                 newInd = j + 2;
             }
+
+            startInd = newInd;
         }
 
         calendarRow.appendChild(calendarCol);
     }
-    
-    startInd = newInd;
-    console.log(`im herrree last ${newInd}`)
     return [startInd, counting]
 }
 
@@ -142,7 +145,6 @@ let newStartInd = 0;
 
 // make calendar js objects
 for (var x = 0; x < monthsToShow; x++) {
-
     //make table
     const divCalendar = document.createElement('div');
     divCalendar.classList.add('calendarDiv');
@@ -173,7 +175,9 @@ for (var x = 0; x < monthsToShow; x++) {
         divCalendar.classList.add("hide");
     }
 
-
+    if (debugging === true) {
+        console.log(`month: ${monthsToDisplay[x]} ${x}`)
+    }
 
     calendarTable.addEventListener('click', function onOpen(e) {
         const cell = e.target.closest('td');
@@ -202,7 +206,13 @@ for (var x = 0; x < monthsToShow; x++) {
     
     // make table rows and columns
     for (var i = 0; i < numOfRows; i++) {
-        
+        if (debugging === true) {
+            console.log(`row num: ${i}`)
+            if (i === numOfRows - 1) {
+                console.log('i am the last row')
+                console.log(`here is the last index ${startInd}`)
+            }
+        }
         const calendarRow = document.createElement('tr');
         if (i === 0) {
             for (var j = 0; j < 7; j++) {
@@ -220,7 +230,6 @@ for (var x = 0; x < monthsToShow; x++) {
 
         
         tableBody.appendChild(calendarRow)
-        console.log(`counting ${counting}, month ${x}, start ${newStartInd}`)   
     }
 
     calendarTable.appendChild(tableBody);
