@@ -120,19 +120,26 @@ function makeCols(i, calendarRow, counting, startInd) {
             calendarCol.appendChild(cellText);
         }
 
+        calendarRow.appendChild(calendarCol);
+
         if ((i > 1) && (listOfDates[x][counting] === listOfDates[x][(listOfDates[x]).length - 1])) {
 
             if (j === 6) {
                 newInd = 1;
+                console.log("BANANAS")
             } else {
                 newInd = j + 2;
+                console.log("BANANAS")
             }
+
+            // console.log(`index new ${newInd}, old ${startInd}`)
 
             startInd = newInd;
         }
 
-        calendarRow.appendChild(calendarCol);
     }
+
+    console.log(`DOUBLE CHECK: index new ${newInd}, old ${startInd}`)
     return [startInd, counting]
 }
 
