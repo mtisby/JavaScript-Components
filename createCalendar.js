@@ -80,16 +80,14 @@ function listDates(monthsToDisplay) {
 function getNumOfRows(listOfDates, x) {
     let numOfRows = 0;
     if (startInd >= 5) {
-        console.log('here, this is firest ')
         numOfRows = Math.ceil(listOfDates[x][(listOfDates[x]).length - 1] / 7) + 2;
-        console.log(listOfDates[x][(listOfDates[x]).length - 1])
-        console.log(numOfRows, startInd)
     } else if (monthsToDisplay[x] === 'Feb' && startInd != 1) {
         numOfRows = Math.ceil(listOfDates[x][(listOfDates[x]).length - 1] / 7) + 2;
     }else {
         numOfRows = Math.ceil(listOfDates[x][(listOfDates[x]).length - 1] / 7) + 1;
-        console.log('here, this is last ')
     }
+
+    console.log(`x: ${x}, num of rows: ${numOfRows}`)
     return numOfRows
 }
 
@@ -128,7 +126,6 @@ function makeCols (i, calendarRow, counting, startInd) {
 
         calendarRow.appendChild(calendarCol);
     }
-    console.log(`function ${startInd}`)
     return [startInd, counting]
 }
 
@@ -165,7 +162,6 @@ for (var x = 0; x < monthsToShow; x++) {
    
     if (x > 0 && x != (monthsToShow - 1)) {
         startInd = newStartInd;
-        console.log(`starting ${startInd}`)
         divCalendar.classList.add("hide");
     } else if (x === 0) {
         buttonLeft.classList.add("visualhide");
@@ -200,10 +196,6 @@ for (var x = 0; x < monthsToShow; x++) {
     let numOfRows = getNumOfRows(listOfDates, x); // find the number of rows needed for each calendar month
     let counting = 0; // initialize counting variables
 
-    if (x === 2) {
-        console.log(numOfRows)
-    }
-    
     
     // make table rows and columns
     for (var i = 0; i < numOfRows; i++) {
@@ -221,9 +213,6 @@ for (var x = 0; x < monthsToShow; x++) {
             indices = makeCols(i, calendarRow, counting, startInd);
             newStartInd = indices[0];
             counting = indices[1];
-            if (x === 1) {
-                console.log(`recieved ${newStartInd}`)
-            }
         }
 
         
