@@ -80,20 +80,19 @@ function listDates(monthsToDisplay) {
 function getNumOfRows(listOfDates, x) {
     let numOfRows = 0;
     if (startInd >= 5) {
-        //console.log(`greater than or equal to 5`)
         numOfRows = Math.ceil(listOfDates[x][(listOfDates[x]).length - 1] / 7) + 2;
     } else if (monthsToDisplay[x] === 'Feb' && startInd != 1) {
         numOfRows = Math.ceil(listOfDates[x][(listOfDates[x]).length - 1] / 7) + 2;
     }else {
         numOfRows = Math.ceil(listOfDates[x][(listOfDates[x]).length - 1] / 7) + 1;
-        //console.log(`less than 5`)
     }
 
-    //console.log(`x: ${x}, num of rows: ${numOfRows}`)
     return numOfRows
 }
 
-function makeCols (i, calendarRow, counting, startInd) {
+function makeCols(i, calendarRow, counting, startInd) {
+    let newInd = 0;
+
     for (var j = 0; j < 7; j++) {
         const calendarCol = document.createElement('td');
         calendarCol.classList.add('textCenter', 'cellDesign');
@@ -103,7 +102,6 @@ function makeCols (i, calendarRow, counting, startInd) {
         } else if ((i===1 && j>=startInd)||(i > 1 && (counting < listOfDates[x][listOfDates[x].length - 1]))) {
             const cellText = document.createTextNode(listOfDates[x][counting]);
             calendarCol.appendChild(cellText);
-            console.log(`month: ${x}, date: ${listOfDates[x][counting]}`)
 
             if (listOfDates[x][counting] === parseInt(today.slice(8, 10)) && monthsToDisplay[x] === today.slice(4, 7)) {
                 calendarCol.classList;
@@ -119,22 +117,19 @@ function makeCols (i, calendarRow, counting, startInd) {
         }
 
         if ((i > 1) && (listOfDates[x][counting] === listOfDates[x][(listOfDates[x]).length - 1])) {
-            if (x === 1) {
-                console.log(`im herrree ${startInd}`)
-            }
 
             if (j === 6) {
-                startInd = 1;
-                console.log(`im herrree 1 ${startInd}`)
+                newInd = 1;
             } else {
-                startInd = j + 2;
-                console.log(`im herrree 2 ${startInd}`)
+                newInd = j + 2;
             }
         }
 
         calendarRow.appendChild(calendarCol);
     }
-    console.log(`im herrree last ${startInd}`)
+    
+    startInd = newInd;
+    console.log(`im herrree last ${newInd}`)
     return [startInd, counting]
 }
 
@@ -142,7 +137,6 @@ function makeCols (i, calendarRow, counting, startInd) {
 let startInd = startDate(today); // returns the starting date/index for the current month
 const monthsToDisplay= listOfMonths(); // get what months to display
 const listOfDates = listDates(monthsToDisplay); // get the dates for the corresponding months
-console.log(listOfDates)
 // global variable for holding a new starting index for iterations greater than 0
 let newStartInd = 0;
 
@@ -222,16 +216,13 @@ for (var x = 0; x < monthsToShow; x++) {
             indices = makeCols(i, calendarRow, counting, startInd);
             newStartInd = indices[0];
             counting = indices[1];
-            //console.log(`startInd ${newStartInd}; counting ${counting}`)
-            if (x === 2) {
-                console.log(`startInd ${newStartInd}; counting ${counting}`)
-            }
         }
 
         
         tableBody.appendChild(calendarRow)
-        
+        console.log(`counting ${counting}, month ${x}, start ${newStartInd}`)   
     }
+
     calendarTable.appendChild(tableBody);
     headerDiv.appendChild(buttonLeft);
     headerDiv.appendChild(header);
