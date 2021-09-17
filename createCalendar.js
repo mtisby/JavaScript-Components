@@ -9,7 +9,7 @@ const daysOfWeekDict = { Sun: 1, Mon: 2, Tue: 3, Wed: 4, Thu: 5, Fri: 6, Sat: 7 
 const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('')
 const today = Date();
 const start = 1;
-const monthsToShow = 4;
+const monthsToShow = 3;
 const count = 1;
 
 const debugging = true;
@@ -92,8 +92,8 @@ function getNumOfRows(listOfDates, x) {
 }
 
 function makeCols(i, calendarRow, counting, startInd) {
-    let newInd = 0;
-
+    console.log(`beginning ind: ${startInd}`)
+    var newInd = 0
     for (var j = 0; j < 7; j++) {
         const calendarCol = document.createElement('td');
         calendarCol.classList.add('textCenter', 'cellDesign');
@@ -115,10 +115,7 @@ function makeCols(i, calendarRow, counting, startInd) {
             }
 
             counting++
-        } else {
-            const cellText = document.createTextNode('empty');
-            calendarCol.appendChild(cellText);
-        }
+        } 
 
         calendarRow.appendChild(calendarCol);
 
@@ -126,20 +123,15 @@ function makeCols(i, calendarRow, counting, startInd) {
 
             if (j === 6) {
                 newInd = 1;
-                console.log("BANANAS")
             } else {
                 newInd = j + 2;
-                console.log("BANANAS")
             }
 
-            // console.log(`index new ${newInd}, old ${startInd}`)
-
             startInd = newInd;
-        }
+            console.log(`index new ${newInd}, old ${startInd}`)
+        } 
 
     }
-
-    console.log(`DOUBLE CHECK: index new ${newInd}, old ${startInd}`)
     return [startInd, counting]
 }
 
@@ -173,7 +165,7 @@ for (var x = 0; x < monthsToShow; x++) {
     headerDiv.classList.add('headerDiv');
    
     if (x > 0 && x != (monthsToShow - 1)) {
-        startInd = newStartInd;
+        //startInd = newStartInd;
         divCalendar.classList.add("hide");
     } else if (x === 0) {
         buttonLeft.classList.add("visualhide");
@@ -231,7 +223,7 @@ for (var x = 0; x < monthsToShow; x++) {
             }
         } else {
             indices = makeCols(i, calendarRow, counting, startInd);
-            newStartInd = indices[0];
+            startInd = indices[0];
             counting = indices[1];
         }
 
