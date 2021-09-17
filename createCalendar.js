@@ -9,7 +9,7 @@ const daysOfWeekDict = { Sun: 1, Mon: 2, Tue: 3, Wed: 4, Thu: 5, Fri: 6, Sat: 7 
 const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('')
 const today = Date();
 const start = 1;
-const monthsToShow = 3;
+const monthsToShow = 5;
 const count = 1;
 
 const debugging = true;
@@ -115,7 +115,9 @@ function makeCols(i, calendarRow, counting, startInd) {
             }
 
             counting++
-        } 
+        } else {
+            //
+        }
 
         calendarRow.appendChild(calendarCol);
 
@@ -183,6 +185,7 @@ for (var x = 0; x < monthsToShow; x++) {
  
         if (!cell) { return; } // Quit, not clicked on a cell
         if (Object.keys(daysOfWeekDict).includes(cell.innerText)) { return; } // Quit, not clicked on a cell
+        if (cell.innerText === '') { return; } // Quit, not clicked on a cell
         if ( e.path[4].querySelector('h1').innerText === today.slice(4,7) && parseInt(cell.innerText) < parseInt(today.slice(8,10))) { return; } // Quit, not clicked on a cell
         
         const value = e.srcElement.innerText;
